@@ -72,7 +72,13 @@
           "fileName": "index",
           "extension": "js"
         },
-        "screenshotPaths": {}
+        "screenshotPaths": {
+          "default": {
+            "path": "/Users/Mike.Golus/Projects/Personal/classics-retold/.slicemachine/assets/slices/Hero/default/preview.png",
+            "width": 800,
+            "height": 86
+          }
+        }
       }
     }
   }
