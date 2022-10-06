@@ -1,0 +1,19 @@
+{
+  "_cts": {
+    "landing_page": {}
+  },
+  "slices": {
+    "Hero": {
+      "default": {
+        "primary": {
+          "title": {
+            "config": {
+              "patternType": "HEADING",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}
