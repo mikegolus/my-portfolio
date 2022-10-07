@@ -2,8 +2,13 @@ import React from 'react'
 import * as prismicH from '@prismicio/helpers'
 import { createClient } from '../../prismicio'
 import { PrismicLink, PrismicRichText } from '@prismicio/react'
+import { BookDocument } from '../../types.generated'
 
-const Book = ({ book }) => (
+interface BookProps {
+  book: BookDocument
+}
+
+const Book = ({ book }: BookProps) => (
   <section>
     <PrismicLink href="/">Home</PrismicLink>
     {book.data.title && <PrismicRichText field={book.data.title}/>}
@@ -18,7 +23,7 @@ const Book = ({ book }) => (
 )
 
 // Fetch content from prismic
-export async function getStaticProps({ params, previewData }) {
+export async function getStaticProps({ params, previewData }: any) {
   const client = createClient({ previewData })
 
   const book = await client.getByUID('book', params.uid)

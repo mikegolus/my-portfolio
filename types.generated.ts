@@ -6,6 +6,329 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for Author documents */
+interface AuthorDocumentData {
+    /**
+     * Name field in *Author*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.name
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    name: prismicT.TitleField;
+    /**
+     * Portrait field in *Author*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.portrait
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    portrait: prismicT.ImageField<never>;
+    /**
+     * Bio field in *Author*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.bio
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    bio: prismicT.RichTextField;
+    /**
+     * Book field in *Author*
+     *
+     * - **Field Type**: Content Relationship
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.book
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    book: prismicT.RelationField<"book">;
+    /**
+     * Personal website field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.personal_website
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    personal_website: prismicT.LinkField;
+    /**
+     * Facebook field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.facebook
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    facebook: prismicT.LinkField;
+    /**
+     * Twitter field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.twitter
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    twitter: prismicT.LinkField;
+    /**
+     * Instagram field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.instagram
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    instagram: prismicT.LinkField;
+    /**
+     * Good Reads field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.good_reads
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    good_reads: prismicT.LinkField;
+    /**
+     * Amazon field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.amazon
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    amazon: prismicT.LinkField;
+    /**
+     * TikTok field in *Author*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.tiktok
+     * - **Tab**: Links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    tiktok: prismicT.LinkField;
+    /**
+     * URL slug field in *Author*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.slug
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    slug: prismicT.KeyTextField;
+    /**
+     * Page title field in *Author*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.page_title
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    page_title: prismicT.KeyTextField;
+    /**
+     * SEO title field in *Author*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.seo_title
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    seo_title: prismicT.KeyTextField;
+    /**
+     * SEO description field in *Author*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.seo_description
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    seo_description: prismicT.KeyTextField;
+    /**
+     * Alternate Social Sharing Image field in *Author*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: author.alternate_social_sharing_image
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    alternate_social_sharing_image: prismicT.ImageField<never>;
+}
+/**
+ * Author document from Prismic
+ *
+ * - **API ID**: `author`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AuthorDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
+/** Content for Book documents */
+interface BookDocumentData {
+    /**
+     * Title field in *Book*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    title: prismicT.TitleField;
+    /**
+     * What it's retelling field in *Book*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.what_its_retelling
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    what_its_retelling: prismicT.RichTextField;
+    /**
+     * Author field in *Book*
+     *
+     * - **Field Type**: Content Relationship
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.author
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    author: prismicT.RelationField<"author">;
+    /**
+     * Amazon link field in *Book*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.amazon_link
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    amazon_link: prismicT.LinkField;
+    /**
+     * Cover field in *Book*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.cover
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    cover: prismicT.ImageField<never>;
+    /**
+     * Synopsis field in *Book*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.synopsis
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    synopsis: prismicT.RichTextField;
+    /**
+     * URL slug field in *Book*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.slug
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    slug: prismicT.KeyTextField;
+    /**
+     * Page title field in *Book*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.page_title
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    page_title: prismicT.KeyTextField;
+    /**
+     * SEO title field in *Book*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.seo_title
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    seo_title: prismicT.KeyTextField;
+    /**
+     * SEO description field in *Book*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.seo_description
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    seo_description: prismicT.KeyTextField;
+    /**
+     * Alternate Social Sharing Image field in *Book*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: book.alternate_social_sharing_image
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    alternate_social_sharing_image: prismicT.ImageField<never>;
+}
+/**
+ * Book document from Prismic
+ *
+ * - **API ID**: `book`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BookDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<BookDocumentData>, "book", Lang>;
 /** Content for Landing Page documents */
 interface LandingPageDocumentData {
     /**
@@ -19,6 +342,39 @@ interface LandingPageDocumentData {
      *
      */
     slices: prismicT.SliceZone<LandingPageDocumentDataSlicesSlice>;
+    /**
+     * Slug field in *Landing Page*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.slug
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    slug: prismicT.KeyTextField;
+    /**
+     * Metadata title field in *Landing Page*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.metadata_title
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    metadata_title: prismicT.KeyTextField;
+    /**
+     * Metadata description field in *Landing Page*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.metadata_description
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    metadata_description: prismicT.KeyTextField;
 }
 /**
  * Slice for *Landing Page → Slice Zone*
@@ -35,7 +391,7 @@ type LandingPageDocumentDataSlicesSlice = HeroSlice;
  * @typeParam Lang - Language API ID of the document.
  */
 export type LandingPageDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<LandingPageDocumentData>, "landing_page", Lang>;
-export type AllDocumentTypes = LandingPageDocument;
+export type AllDocumentTypes = AuthorDocument | BookDocument | LandingPageDocument;
 /**
  * Primary content in Hero → Primary
  *
@@ -90,6 +446,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { LandingPageDocumentData, LandingPageDocumentDataSlicesSlice, LandingPageDocument, AllDocumentTypes, HeroSliceDefaultPrimary, HeroSliceDefault, HeroSliceVariation, HeroSlice };
+        export type { AuthorDocumentData, AuthorDocument, BookDocumentData, BookDocument, LandingPageDocumentData, LandingPageDocumentDataSlicesSlice, LandingPageDocument, AllDocumentTypes, HeroSliceDefaultPrimary, HeroSliceDefault, HeroSliceVariation, HeroSlice };
     }
 }
