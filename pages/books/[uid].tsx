@@ -14,10 +14,10 @@ const Book = ({ book }: BookProps) => (
     {book.data.title && <PrismicRichText field={book.data.title}/>}
     {book.data.synopsis && <PrismicRichText field={book.data.synopsis}/>}
     <style jsx>{`
-        section {
-          margin: 4em auto;
-          text-align: center;
-        }
+      section {
+        margin: 4em auto;
+        text-align: center;
+      }
     `}</style>
   </section>
 )

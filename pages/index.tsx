@@ -1,10 +1,15 @@
 import { PrismicLink, PrismicText, SliceZone } from '@prismicio/react'
-import { LandingPageDocument } from '../types.generated'
+import { AuthorDocument, LandingPageDocument } from '../types.generated'
 
 import { createClient } from '../prismicio'
 import { components } from '../slices'
 
-const Page = ({ page, authors }) => {
+interface PageProps {
+  page: LandingPageDocument
+  authors: AuthorDocument[]
+}
+
+const Page = ({ page, authors }: PageProps) => {
   return (
     <>
       <SliceZone slices={page.data.slices} components={components} />
@@ -29,7 +34,7 @@ const Page = ({ page, authors }) => {
 
 export default Page
 
-export async function getStaticProps({ previewData }) {
+export async function getStaticProps({ previewData }: any) {
   const client = createClient({ previewData })
 
   const page = await client.getSingle('landing_page')
