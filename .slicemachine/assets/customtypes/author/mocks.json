@@ -1,0 +1,89 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "author",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "name": [
+      {
+        "type": "heading1",
+        "text": "Hearing",
+        "spans": []
+      }
+    ],
+    "portrait": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72"
+    },
+    "bio": [
+      {
+        "type": "paragraph",
+        "text": "Eu qui Lorem deserunt qui incididunt quis. Officia est velit quis eu ut officia elit do enim veniam exercitation. Reprehenderit est ipsum voluptate laborum adipisicing fugiat esse.",
+        "spans": []
+      }
+    ],
+    "book": {
+      "id": "mock_document_id",
+      "link_type": "Document",
+      "type": "book",
+      "tags": [],
+      "lang": "en-us",
+      "slug": null,
+      "first_publication_date": "1970-01-01T00:00:01+0000",
+      "last_publication_date": "1970-01-01T01:00:00+0000"
+    },
+    "personal_website": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    },
+    "facebook": {
+      "link_type": "Web",
+      "url": "https://prismic.io"
+    },
+    "twitter": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    },
+    "instagram": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    },
+    "good_reads": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    },
+    "amazon": {
+      "link_type": "Web",
+      "url": "http://twitter.com"
+    },
+    "tiktok": {
+      "link_type": "Web",
+      "url": "https://slicemachine.dev"
+    },
+    "slug": "former",
+    "page_title": "imagine",
+    "seo_title": "mix",
+    "seo_description": "design",
+    "alternate_social_sharing_image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f"
+    }
+  }
+}

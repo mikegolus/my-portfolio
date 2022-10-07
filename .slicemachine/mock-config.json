@@ -1,6 +1,28 @@
 {
   "_cts": {
-    "landing_page": {}
+    "landing_page": {},
+    "author": {
+      "name": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "bio": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      }
+    },
+    "book": {
+      "title": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      }
+    }
   },
   "slices": {
     "Hero": {

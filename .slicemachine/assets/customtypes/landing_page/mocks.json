@@ -11,6 +11,9 @@
   "lang": "en-us",
   "alternate_languages": [],
   "data": {
-    "slices": []
+    "slices": [],
+    "slug": "ordinary",
+    "metadata_title": "rise",
+    "metadata_description": "serve"
   }
 }

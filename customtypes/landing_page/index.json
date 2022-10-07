@@ -5,13 +5,6 @@
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "Page ID",
-          "placeholder": ""
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
@@ -21,6 +14,36 @@
               "type": "SharedSlice"
             }
           }
+        }
+      }
+    },
+    "Config": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Page ID",
+          "placeholder": ""
+        }
+      },
+      "slug": {
+        "type": "Text",
+        "config": {
+          "label": "Slug",
+          "placeholder": ""
+        }
+      },
+      "metadata_title": {
+        "type": "Text",
+        "config": {
+          "label": "Metadata title",
+          "placeholder": ""
+        }
+      },
+      "metadata_description": {
+        "type": "Text",
+        "config": {
+          "label": "Metadata description",
+          "placeholder": ""
         }
       }
     }
