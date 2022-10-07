@@ -23,7 +23,6 @@ export async function getStaticProps({ previewData }: PageProps) {
   return {
     props: {
       page,
-    },
-    revalidate: 10
+    }
   }
 }
