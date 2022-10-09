@@ -2,15 +2,17 @@ import React from 'react'
 import Head from 'next/head'
 import * as prismicH from '@prismicio/helpers'
 import { createClient } from '../../prismicio'
-import { PrismicLink, PrismicRichText } from '@prismicio/react'
+import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/react'
 import { PrismicNextImage } from '@prismicio/next'
-import { AuthorDocument } from '../../types.generated'
+import { AuthorDocument, BookDocument } from '../../types.generated'
 
 interface AuthorPageProps {
   author: AuthorDocument
 }
 
-const AuthorPage = ({ author }: AuthorPageProps) => (
+const AuthorPage = ({ author }: AuthorPageProps) => {
+  console.log(author)
+  return (
   <>
     <Head>
       {author.data.page_title && <title>{author.data.page_title}</title>}
@@ -18,24 +20,34 @@ const AuthorPage = ({ author }: AuthorPageProps) => (
       {author.data.seo_title && <meta name="og:title" content={author.data.seo_title} />}
       {author.data.seo_description && <meta name="description" content={author.data.seo_description} />}
       {author.data.seo_description && <meta name="og:description" content={author.data.seo_description} />}
-      {/* {author.data.alternate_social_sharing_image && <meta name="og:image" content={author.data.alternate_social_sharing_image.src} />} */}
+      {prismicH.isFilled.image(author.data.alternate_social_sharing_image) && <meta name="og:image" content={author.data.alternate_social_sharing_image.url} />}
     </Head>
     <section>
       <PrismicLink href="/">Home</PrismicLink>
-      {author.data.portrait && <PrismicNextImage field={author.data.portrait} />}
-      {author.data.name && <PrismicRichText field={author.data.name} />}
-      {author.data.bio && <PrismicRichText field={author.data.bio} />}
-      {/* {author.data.personal_website && <p><PrismicLink field={author.data.personal_website}>{getFriendlyUrl(author.data.personal_website.url)}</PrismicLink></p>} */}
-      {(author.data.facebook || author.data.twitter || author.data.instagram || author.data.good_reads || author.data.amazon || author.data.tiktok) &&
-        <p className="links">
-          {author.data.facebook && <PrismicLink field={author.data.facebook}>Facebook</PrismicLink>}
-          {author.data.twitter && <PrismicLink field={author.data.twitter}>Twitter</PrismicLink>}
-          {author.data.instagram && <PrismicLink field={author.data.instagram}>Instagram</PrismicLink>}
-          {author.data.good_reads && <PrismicLink field={author.data.good_reads}>Good Reads</PrismicLink>}
-          {author.data.amazon && <PrismicLink field={author.data.amazon}>Amazon</PrismicLink>}
-          {author.data.tiktok && <PrismicLink field={author.data.tiktok}>TikTok</PrismicLink>}
-        </p>
+      <PrismicNextImage field={author.data.portrait} />
+      <PrismicRichText field={author.data.name} />
+      {prismicH.isFilled.contentRelationship<'book', string, BookDocument['data']>(author.data.book) && 
+        <>
+          <div>
+            <PrismicLink href={author.data.book.url}>
+              <PrismicText field={author.data.book.data?.title} />
+            </PrismicLink>
+          </div>
+          <div>
+            a retelling of <em><PrismicText field={author.data.book.data?.what_its_retelling} /></em>
+          </div>
+        </>
       }
+      <PrismicRichText field={author.data.bio} />
+      {prismicH.isFilled.link(author.data.personal_website) && <p><PrismicLink field={author.data.personal_website}>{getFriendlyUrl(author.data.personal_website.url || '')}</PrismicLink></p>}
+      <p className="links">
+        <PrismicLink field={author.data.facebook}>Facebook</PrismicLink>
+        <PrismicLink field={author.data.twitter}>Twitter</PrismicLink>
+        <PrismicLink field={author.data.instagram}>Instagram</PrismicLink>
+        <PrismicLink field={author.data.good_reads}>Good Reads</PrismicLink>
+        <PrismicLink field={author.data.amazon}>Amazon</PrismicLink>
+        <PrismicLink field={author.data.tiktok}>TikTok</PrismicLink>
+      </p>
       <style jsx>{`
           section {
             max-width: 600px;
@@ -52,7 +64,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => (
       `}</style>
     </section>
   </>
-)
+)}
 
 export default AuthorPage
 
@@ -60,24 +72,13 @@ export default AuthorPage
 export async function getStaticProps({ params, previewData }: any) {
   const client = createClient({ previewData })
 
-  const author = await client.getByUID('author', params.uid)
+  const author = await client.getByUID('author', params.uid, {
+    fetchLinks: ['book.title', 'book.what_its_retelling'],
+  })
 
   return {
     props: {
-      pageTitle: author.data.page_title,
-      seoTitle: author.data.seo_title,
-      seoDescription: author.data.seo_description,
-      altSocialSharingImage: author.data.alternate_social_sharing_image,
-      name: author.data.name,
-      bio: author.data.bio,
-      portrait: author.data.portrait,
-      personalWebsite: author.data.personal_website,
-      facebook: author.data.facebook,
-      twitter: author.data.twitter,
-      instagram: author.data.instagram,
-      goodReads: author.data.good_reads,
-      amazon: author.data.amazon,
-      tiktok: author.data.tiktok
+      author
     },
     revalidate: 10
   }
@@ -95,21 +96,21 @@ export async function getStaticPaths() {
   }
 }
 
-// const getFriendlyUrl = (url) => {
-//   let newUrl = url
-//   if (url.startsWith('https://')) {
-//     const https = 'https://';
-//     newUrl = url.slice(https.length)
-//   }
+const getFriendlyUrl = (url: string) => {
+  let newUrl = url
+  if (url.startsWith('https://')) {
+    const https = 'https://';
+    newUrl = url.slice(https.length)
+  }
 
-//   if (url.startsWith('http://')) {
-//     const http = 'http://';
-//     newUrl = url.slice(http.length)
-//   }
+  if (url.startsWith('http://')) {
+    const http = 'http://';
+    newUrl = url.slice(http.length)
+  }
 
-//   if (newUrl.endsWith('/')) {
-//     newUrl = newUrl.slice(0, -1)
-//   }
+  if (newUrl.endsWith('/')) {
+    newUrl = newUrl.slice(0, -1)
+  }
 
-//   return newUrl;
-// }
+  return newUrl;
+}

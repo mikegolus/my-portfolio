@@ -38,7 +38,9 @@ export async function getStaticProps({ previewData }: any) {
   const client = createClient({ previewData })
 
   const page = await client.getSingle('landing_page')
-  const authors = await client.getAllByType('author')
+  const authors = await client.getAllByType('author', {
+    fetchLinks: 'book.title'
+  })
 
   return {
     props: {

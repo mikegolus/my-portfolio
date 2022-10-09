@@ -29,7 +29,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/image
      *
      */
-    portrait?: prismicT.ImageField<never>;
+    portrait: prismicT.ImageField<never>;
     /**
      * Bio field in *Author*
      *
@@ -40,7 +40,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
      *
      */
-    bio?: prismicT.RichTextField;
+    bio: prismicT.RichTextField;
     /**
      * Book field in *Author*
      *
@@ -51,7 +51,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    book?: prismicT.RelationField<"book">;
+    book: prismicT.RelationField<"book">;
     /**
      * Personal website field in *Author*
      *
@@ -62,7 +62,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    personal_website?: prismicT.LinkField;
+    personal_website: prismicT.LinkField;
     /**
      * Facebook field in *Author*
      *
@@ -73,7 +73,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    facebook?: prismicT.LinkField;
+    facebook: prismicT.LinkField;
     /**
      * Twitter field in *Author*
      *
@@ -84,7 +84,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    twitter?: prismicT.LinkField;
+    twitter: prismicT.LinkField;
     /**
      * Instagram field in *Author*
      *
@@ -95,7 +95,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    instagram?: prismicT.LinkField;
+    instagram: prismicT.LinkField;
     /**
      * Good Reads field in *Author*
      *
@@ -106,7 +106,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    good_reads?: prismicT.LinkField;
+    good_reads: prismicT.LinkField;
     /**
      * Amazon field in *Author*
      *
@@ -117,7 +117,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    amazon?: prismicT.LinkField;
+    amazon: prismicT.LinkField;
     /**
      * TikTok field in *Author*
      *
@@ -128,7 +128,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    tiktok?: prismicT.LinkField;
+    tiktok: prismicT.LinkField;
     /**
      * URL slug field in *Author*
      *
@@ -139,7 +139,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    slug?: prismicT.KeyTextField;
+    slug: prismicT.KeyTextField;
     /**
      * Page title field in *Author*
      *
@@ -150,7 +150,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    page_title?: prismicT.KeyTextField;
+    page_title: prismicT.KeyTextField;
     /**
      * SEO title field in *Author*
      *
@@ -161,7 +161,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    seo_title?: prismicT.KeyTextField;
+    seo_title: prismicT.KeyTextField;
     /**
      * SEO description field in *Author*
      *
@@ -172,7 +172,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    seo_description?: prismicT.KeyTextField;
+    seo_description: prismicT.KeyTextField;
     /**
      * Alternate Social Sharing Image field in *Author*
      *
@@ -183,7 +183,7 @@ interface AuthorDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/image
      *
      */
-    alternate_social_sharing_image?: prismicT.ImageField<never>;
+    alternate_social_sharing_image: prismicT.ImageField<never>;
 }
 /**
  * Author document from Prismic
@@ -229,7 +229,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    author?: prismicT.RelationField<"author">;
+    author: prismicT.RelationField<"author">;
     /**
      * Amazon link field in *Book*
      *
@@ -240,7 +240,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
      *
      */
-    amazon_link?: prismicT.LinkField;
+    amazon_link: prismicT.LinkField;
     /**
      * Cover field in *Book*
      *
@@ -251,7 +251,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/image
      *
      */
-    cover?: prismicT.ImageField<never>;
+    cover: prismicT.ImageField<never>;
     /**
      * Synopsis field in *Book*
      *
@@ -262,7 +262,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
      *
      */
-    synopsis?: prismicT.RichTextField;
+    synopsis: prismicT.RichTextField;
     /**
      * URL slug field in *Book*
      *
@@ -273,7 +273,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    slug?: prismicT.KeyTextField;
+    slug: prismicT.KeyTextField;
     /**
      * Page title field in *Book*
      *
@@ -284,7 +284,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    page_title?: prismicT.KeyTextField;
+    page_title: prismicT.KeyTextField;
     /**
      * SEO title field in *Book*
      *
@@ -295,7 +295,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    seo_title?: prismicT.KeyTextField;
+    seo_title: prismicT.KeyTextField;
     /**
      * SEO description field in *Book*
      *
@@ -306,7 +306,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    seo_description?: prismicT.KeyTextField;
+    seo_description: prismicT.KeyTextField;
     /**
      * Alternate Social Sharing Image field in *Book*
      *
@@ -317,7 +317,7 @@ interface BookDocumentData {
      * - **Documentation**: https://prismic.io/docs/core-concepts/image
      *
      */
-    alternate_social_sharing_image?: prismicT.ImageField<never>;
+    alternate_social_sharing_image: prismicT.ImageField<never>;
 }
 /**
  * Book document from Prismic

@@ -11,8 +11,8 @@ interface BookProps {
 const Book = ({ book }: BookProps) => (
   <section>
     <PrismicLink href="/">Home</PrismicLink>
-    {book.data.title && <PrismicRichText field={book.data.title}/>}
-    {book.data.synopsis && <PrismicRichText field={book.data.synopsis}/>}
+    <PrismicRichText field={book.data.title}/>
+    <PrismicRichText field={book.data.synopsis}/>
     <style jsx>{`
       section {
         margin: 4em auto;
