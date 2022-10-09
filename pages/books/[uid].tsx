@@ -3,6 +3,8 @@ import * as prismicH from '@prismicio/helpers'
 import { createClient } from '../../prismicio'
 import { PrismicLink, PrismicRichText } from '@prismicio/react'
 import { BookDocument } from '../../types.generated'
+import { GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring';
 
 interface BookProps {
   book: BookDocument
@@ -22,11 +24,15 @@ const Book = ({ book }: BookProps) => (
   </section>
 )
 
+interface Params extends ParsedUrlQuery {
+  uid: string
+}
+
 // Fetch content from prismic
-export async function getStaticProps({ params, previewData }: any) {
+export const getStaticProps: GetStaticProps<BookProps, Params> = async ({params, previewData}) => {
   const client = createClient({ previewData })
 
-  const book = await client.getByUID('book', params.uid)
+  const book = await client.getByUID('book', params!.uid)
 
   return {
     props: { book },

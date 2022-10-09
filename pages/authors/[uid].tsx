@@ -10,16 +10,14 @@ interface AuthorPageProps {
   author: AuthorDocument
 }
 
-const AuthorPage = ({ author }: AuthorPageProps) => {
-  console.log(author)
-  return (
+const AuthorPage = ({ author }: AuthorPageProps) => (
   <>
     <Head>
-      {author.data.page_title && <title>{author.data.page_title}</title>}
-      {author.data.seo_title && <meta name="og:title" content={author.data.seo_title} />}
-      {author.data.seo_title && <meta name="og:title" content={author.data.seo_title} />}
-      {author.data.seo_description && <meta name="description" content={author.data.seo_description} />}
-      {author.data.seo_description && <meta name="og:description" content={author.data.seo_description} />}
+      {prismicH.isFilled.keyText(author.data.page_title) && <title>{author.data.page_title}</title>}
+      {prismicH.isFilled.keyText(author.data.seo_title) && <meta name="og:title" content={author.data.seo_title} />}
+      {prismicH.isFilled.keyText(author.data.seo_title) && <meta name="og:title" content={author.data.seo_title} />}
+      {prismicH.isFilled.keyText(author.data.seo_description) && <meta name="description" content={author.data.seo_description} />}
+      {prismicH.isFilled.keyText(author.data.seo_description) && <meta name="og:description" content={author.data.seo_description} />}
       {prismicH.isFilled.image(author.data.alternate_social_sharing_image) && <meta name="og:image" content={author.data.alternate_social_sharing_image.url} />}
     </Head>
     <section>
@@ -64,7 +62,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
       `}</style>
     </section>
   </>
-)}
+)
 
 export default AuthorPage
 
