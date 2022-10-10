@@ -25,25 +25,33 @@
           "placeholder": ""
         }
       },
-      "slug": {
+      "page_title": {
         "type": "Text",
         "config": {
-          "label": "Slug",
+          "label": "Page title",
           "placeholder": ""
         }
       },
-      "metadata_title": {
+      "seo_title": {
         "type": "Text",
         "config": {
-          "label": "Metadata title",
+          "label": "SEO title",
           "placeholder": ""
         }
       },
-      "metadata_description": {
+      "seo_description": {
         "type": "Text",
         "config": {
-          "label": "Metadata description",
+          "label": "SEO description",
           "placeholder": ""
+        }
+      },
+      "alternate_social_sharing_image": {
+        "type": "Image",
+        "config": {
+          "label": "Alternate social sharing image",
+          "constraint": {},
+          "thumbnails": []
         }
       }
     }

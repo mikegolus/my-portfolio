@@ -1,5 +1,4 @@
 import * as prismic from '@prismicio/client'
-import * as prismicH from '@prismicio/helpers'
 import * as prismicNext from '@prismicio/next'
 import sm from './sm.json'
 
@@ -22,7 +21,7 @@ const routes = [
   {
     type: 'book',
     path: '/books/:uid',
-  }
+  },
 ]
 
 /**

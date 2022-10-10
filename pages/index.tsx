@@ -38,14 +38,19 @@ export default LandingPage
 export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   const client = createClient({ previewData })
 
-  const page = await client.getSingle('landing_page')
-  const authors = await client.getAllByType('author')
+  try {
+    const page = await client.getSingle('landing_page')
+    const authors = await client.getAllByType('author')
+    return {
+      props: {
+        page,
+        authors,
+      },
+      revalidate: 5,
+    }
+  } catch {}
 
   return {
-    props: {
-      page,
-      authors,
-    },
-    revalidate: 5,
+    notFound: true,
   }
 }

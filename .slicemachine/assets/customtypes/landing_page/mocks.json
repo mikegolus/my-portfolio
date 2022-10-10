@@ -12,8 +12,17 @@
   "alternate_languages": [],
   "data": {
     "slices": [],
-    "slug": "ordinary",
-    "metadata_title": "rise",
-    "metadata_description": "serve"
+    "page_title": "damage",
+    "seo_title": "lay",
+    "seo_description": "secret",
+    "alternate_social_sharing_image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e"
+    }
   }
 }

@@ -109,13 +109,6 @@
           "placeholder": ""
         }
       },
-      "slug": {
-        "type": "Text",
-        "config": {
-          "label": "URL slug",
-          "placeholder": ""
-        }
-      },
       "page_title": {
         "type": "Text",
         "config": {
