@@ -3,13 +3,14 @@ import { AuthorDocument, LandingPageDocument } from '../types.generated'
 
 import { createClient } from '../prismicio'
 import { components } from '../slices'
+import { GetStaticProps } from 'next'
 
-interface PageProps {
+interface LandingPageProps {
   page: LandingPageDocument
   authors: AuthorDocument[]
 }
 
-const Page = ({ page, authors }: PageProps) => {
+const LandingPage = ({ page, authors }: LandingPageProps) => {
   return (
     <>
       <SliceZone slices={page.data.slices} components={components} />
@@ -27,14 +28,14 @@ const Page = ({ page, authors }: PageProps) => {
           max-width: 600px;
           margin: 4em auto;
         }
-    `}</style>
+      `}</style>
     </>
   )
 }
 
-export default Page
+export default LandingPage
 
-export async function getStaticProps({ previewData }: any) {
+export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   const client = createClient({ previewData })
 
   const page = await client.getSingle('landing_page')
@@ -45,6 +46,6 @@ export async function getStaticProps({ previewData }: any) {
       page,
       authors,
     },
-    revalidate: 10
+    revalidate: 5,
   }
 }

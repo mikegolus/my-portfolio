@@ -1,52 +1,70 @@
 import React from 'react'
-import * as prismicH from '@prismicio/helpers'
 import { createClient } from '../../prismicio'
 import { PrismicLink, PrismicRichText } from '@prismicio/react'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { BookDocument } from '../../types.generated'
-import { GetStaticProps } from 'next'
-import { ParsedUrlQuery } from 'querystring';
+import { useRouter } from 'next/router'
+import { buildPaths } from '../../utils/build-paths'
 
-interface BookProps {
-  book: BookDocument
+interface BookPageProps {
+  book?: BookDocument
 }
 
-const Book = ({ book }: BookProps) => (
-  <section>
-    <PrismicLink href="/">Home</PrismicLink>
-    <PrismicRichText field={book.data.title}/>
-    <PrismicRichText field={book.data.synopsis}/>
-    <style jsx>{`
-      section {
-        margin: 4em auto;
-        text-align: center;
-      }
-    `}</style>
-  </section>
-)
+const Book = ({ book }: BookPageProps) => {
+  const router = useRouter()
 
-interface Params extends ParsedUrlQuery {
-  uid: string
+  if (router.isFallback || !book) {
+    return <></>
+  }
+
+  const {
+    data: { title, synopsis },
+  } = book
+
+  return (
+    <section>
+      <PrismicLink href="/">Home</PrismicLink>
+      <PrismicRichText field={title} />
+      <PrismicRichText field={synopsis} />
+      <style jsx>{`
+        section {
+          margin: 4em auto;
+          text-align: center;
+        }
+      `}</style>
+    </section>
+  )
 }
 
-// Fetch content from prismic
-export const getStaticProps: GetStaticProps<BookProps, Params> = async ({params, previewData}) => {
+export const getStaticProps: GetStaticProps<BookPageProps> = async ({
+  params,
+  previewData,
+}) => {
   const client = createClient({ previewData })
 
-  const book = await client.getByUID('book', params!.uid)
+  if (params) {
+    try {
+      const book = await client.getByUID('book', params.uid as string)
+      return {
+        props: { book },
+        revalidate: 5,
+      }
+    } catch {}
+  }
 
   return {
-    props: { book },
+    notFound: true,
   }
 }
 
-// Define Paths
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const client = createClient()
 
   const bookPages = await client.getAllByType('book')
+  const paths = buildPaths(bookPages)
 
   return {
-    paths: bookPages.map((book) => prismicH.asLink(book)),
+    paths,
     fallback: true,
   }
 }
