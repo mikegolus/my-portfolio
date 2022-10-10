@@ -9,6 +9,12 @@ import { buildPaths } from '../../utils/build-paths'
 import { getFriendlyUrl } from '../../utils/get-friendly-url'
 import { useRouter } from 'next/router'
 import { SEOHead } from '../../components/seo-head'
+import { AmazonIcon } from '../../tokens/social-icons/amazon'
+import { GoodReadsIcon } from '../../tokens/social-icons/good-reads'
+import { FacebookIcon } from '../../tokens/social-icons/facebook'
+import { TwitterIcon } from '../../tokens/social-icons/twitter'
+import { InstagramIcon } from '../../tokens/social-icons/instagram'
+import { TikTokIcon } from '../../tokens/social-icons/tiktok'
 
 interface AuthorPageProps {
   author?: AuthorDocument
@@ -78,14 +84,38 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           </p>
         )}
         {hasLinks && (
-          <p className="links">
-            <PrismicLink field={facebook}>Facebook</PrismicLink>
-            <PrismicLink field={twitter}>Twitter</PrismicLink>
-            <PrismicLink field={instagram}>Instagram</PrismicLink>
-            <PrismicLink field={good_reads}>Good Reads</PrismicLink>
-            <PrismicLink field={amazon}>Amazon</PrismicLink>
-            <PrismicLink field={tiktok}>TikTok</PrismicLink>
-          </p>
+          <div className="links">
+            <PrismicLink field={facebook}>
+              <div className="link-icon">
+                <FacebookIcon />
+              </div>
+            </PrismicLink>
+            <PrismicLink field={twitter}>
+              <div className="link-icon">
+                <TwitterIcon />
+              </div>
+            </PrismicLink>
+            <PrismicLink field={instagram}>
+              <div className="link-icon">
+                <InstagramIcon />
+              </div>
+            </PrismicLink>
+            <PrismicLink field={good_reads}>
+              <div className="link-icon">
+                <GoodReadsIcon />
+              </div>
+            </PrismicLink>
+            <PrismicLink field={amazon}>
+              <div className="link-icon">
+                <AmazonIcon />
+              </div>
+            </PrismicLink>
+            <PrismicLink field={tiktok}>
+              <div className="link-icon">
+                <TikTokIcon />
+              </div>
+            </PrismicLink>
+          </div>
         )}
         {hasBook && !book.isBroken && (
           <>
@@ -117,6 +147,19 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           }
           img {
             max-width: 100%;
+          }
+          .links {
+            display: flex;
+            gap: 16px;
+          }
+          .link-icon {
+            display: block;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            width: 48px;
+          }
+          .link-icon svg {
+            display: block;
           }
         `}</style>
       </section>
