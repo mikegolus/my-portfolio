@@ -1,14 +1,14 @@
 import React from 'react'
-import Head from 'next/head'
 import { createClient } from '../../prismicio'
 import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/react'
 import { PrismicNextImage } from '@prismicio/next'
 import { AuthorDocument, BookDocument } from '../../types.generated'
-import { isFilled } from '@prismicio/helpers'
+import { asText, isFilled } from '@prismicio/helpers'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { buildPaths } from '../../utils/build-paths'
 import { getFriendlyUrl } from '../../utils/get-friendly-url'
 import { useRouter } from 'next/router'
+import { SEOHead } from '../../components/seo-head'
 
 interface AuthorPageProps {
   author?: AuthorDocument
@@ -47,42 +47,28 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
     BookDocument['data']
   >(book)
 
+  const hasLinks =
+    isFilled.link(facebook) ||
+    isFilled.link(twitter) ||
+    isFilled.link(instagram) ||
+    isFilled.link(good_reads) ||
+    isFilled.link(amazon) ||
+    isFilled.link(tiktok)
+
   return (
     <>
-      <Head>
-        {isFilled.keyText(page_title) && <title>{page_title}</title>}
-        {isFilled.keyText(seo_title) && (
-          <meta name="og:title" content={seo_title} />
-        )}
-        {isFilled.keyText(seo_description) && (
-          <>
-            <meta name="description" content={seo_description} />
-            <meta name="og:description" content={seo_description} />
-          </>
-        )}
-        {isFilled.image(alternate_social_sharing_image) && (
-          <meta name="og:image" content={alternate_social_sharing_image.url} />
-        )}
-      </Head>
+      <SEOHead
+        pageTitle={page_title}
+        seoTitle={seo_title}
+        seoDescription={seo_description}
+        altSocialSharingImage={alternate_social_sharing_image}
+      />
       <section>
-        <PrismicLink href="/">Home</PrismicLink>
+        <p>
+          <PrismicLink href="/">Home</PrismicLink>
+        </p>
         <PrismicNextImage field={portrait} />
         <PrismicRichText field={name} />
-        {hasBook && (
-          <>
-            <div>
-              <PrismicLink href={book.url}>
-                <PrismicText field={book.data?.title} />
-              </PrismicLink>
-            </div>
-            <div>
-              a retelling of{' '}
-              <em>
-                <PrismicText field={book.data?.what_its_retelling} />
-              </em>
-            </div>
-          </>
-        )}
         <PrismicRichText field={bio} />
         {isFilled.link(personal_website) && (
           <p>
@@ -91,26 +77,46 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
             </PrismicLink>
           </p>
         )}
-        <p className="links">
-          <PrismicLink field={facebook}>Facebook</PrismicLink>
-          <PrismicLink field={twitter}>Twitter</PrismicLink>
-          <PrismicLink field={instagram}>Instagram</PrismicLink>
-          <PrismicLink field={good_reads}>Good Reads</PrismicLink>
-          <PrismicLink field={amazon}>Amazon</PrismicLink>
-          <PrismicLink field={tiktok}>TikTok</PrismicLink>
-        </p>
+        {hasLinks && (
+          <p className="links">
+            <PrismicLink field={facebook}>Facebook</PrismicLink>
+            <PrismicLink field={twitter}>Twitter</PrismicLink>
+            <PrismicLink field={instagram}>Instagram</PrismicLink>
+            <PrismicLink field={good_reads}>Good Reads</PrismicLink>
+            <PrismicLink field={amazon}>Amazon</PrismicLink>
+            <PrismicLink field={tiktok}>TikTok</PrismicLink>
+          </p>
+        )}
+        {hasBook && !book.isBroken && (
+          <>
+            {isFilled.richText(name) && (
+              <h2>{`${asText(name)
+                .split(' ')
+                .pop()}'s contribution to the series`}</h2>
+            )}
+            <p>
+              <PrismicLink href={book.url}>
+                <PrismicText field={book.data?.title} />
+              </PrismicLink>
+              <br />
+              {isFilled.richText(book.data?.what_its_retelling) && (
+                <>
+                  a retelling of{' '}
+                  <em>
+                    <PrismicText field={book.data?.what_its_retelling} />
+                  </em>
+                </>
+              )}
+            </p>
+          </>
+        )}
         <style jsx>{`
           section {
-            max-width: 600px;
+            max-width: 60ch;
             margin: 4em auto;
           }
           img {
             max-width: 100%;
-          }
-          .links {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
           }
         `}</style>
       </section>

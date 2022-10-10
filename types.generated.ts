@@ -130,17 +130,6 @@ interface AuthorDocumentData {
      */
     tiktok: prismicT.LinkField;
     /**
-     * URL slug field in *Author*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: author.slug
-     * - **Tab**: Config
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    slug: prismicT.KeyTextField;
-    /**
      * Page title field in *Author*
      *
      * - **Field Type**: Text
@@ -264,17 +253,6 @@ interface BookDocumentData {
      */
     synopsis: prismicT.RichTextField;
     /**
-     * URL slug field in *Book*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: book.slug
-     * - **Tab**: Config
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    slug: prismicT.KeyTextField;
-    /**
      * Page title field in *Book*
      *
      * - **Field Type**: Text
@@ -332,6 +310,39 @@ export type BookDocument<Lang extends string = string> = prismicT.PrismicDocumen
 /** Content for Landing Page documents */
 interface LandingPageDocumentData {
     /**
+     * Hero heading field in *Landing Page*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.hero_heading
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    hero_heading: prismicT.TitleField;
+    /**
+     * Hero subheading field in *Landing Page*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.hero_subheading
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    hero_subheading: prismicT.TitleField;
+    /**
+     * About the series field in *Landing Page*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.about_the_series
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    about_the_series: prismicT.RichTextField;
+    /**
      * Slice Zone field in *Landing Page*
      *
      * - **Field Type**: Slice Zone
@@ -343,44 +354,55 @@ interface LandingPageDocumentData {
      */
     slices: prismicT.SliceZone<LandingPageDocumentDataSlicesSlice>;
     /**
-     * Slug field in *Landing Page*
+     * Page title field in *Landing Page*
      *
      * - **Field Type**: Text
      * - **Placeholder**: *None*
-     * - **API ID Path**: landing_page.slug
+     * - **API ID Path**: landing_page.page_title
      * - **Tab**: Config
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    slug: prismicT.KeyTextField;
+    page_title: prismicT.KeyTextField;
     /**
-     * Metadata title field in *Landing Page*
+     * SEO title field in *Landing Page*
      *
      * - **Field Type**: Text
      * - **Placeholder**: *None*
-     * - **API ID Path**: landing_page.metadata_title
+     * - **API ID Path**: landing_page.seo_title
      * - **Tab**: Config
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    metadata_title: prismicT.KeyTextField;
+    seo_title: prismicT.KeyTextField;
     /**
-     * Metadata description field in *Landing Page*
+     * SEO description field in *Landing Page*
      *
      * - **Field Type**: Text
      * - **Placeholder**: *None*
-     * - **API ID Path**: landing_page.metadata_description
+     * - **API ID Path**: landing_page.seo_description
      * - **Tab**: Config
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
      *
      */
-    metadata_description: prismicT.KeyTextField;
+    seo_description: prismicT.KeyTextField;
+    /**
+     * Alternate social sharing image field in *Landing Page*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: landing_page.alternate_social_sharing_image
+     * - **Tab**: Config
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    alternate_social_sharing_image: prismicT.ImageField<never>;
 }
 /**
  * Slice for *Landing Page → Slice Zone*
  *
  */
-type LandingPageDocumentDataSlicesSlice = HeroSlice;
+type LandingPageDocumentDataSlicesSlice = never;
 /**
  * Landing Page document from Prismic
  *

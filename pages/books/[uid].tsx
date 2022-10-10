@@ -1,10 +1,13 @@
 import React from 'react'
 import { createClient } from '../../prismicio'
-import { PrismicLink, PrismicRichText } from '@prismicio/react'
+import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { BookDocument } from '../../types.generated'
+import { AuthorDocument, BookDocument } from '../../types.generated'
 import { useRouter } from 'next/router'
 import { buildPaths } from '../../utils/build-paths'
+import { isFilled } from '@prismicio/helpers'
+import { PrismicNextImage } from '@prismicio/next'
+import { SEOHead } from '../../components/seo-head'
 
 interface BookPageProps {
   book?: BookDocument
@@ -18,21 +21,70 @@ const Book = ({ book }: BookPageProps) => {
   }
 
   const {
-    data: { title, synopsis },
+    data: {
+      title,
+      what_its_retelling,
+      synopsis,
+      amazon_link,
+      cover,
+      author,
+      page_title,
+      seo_title,
+      seo_description,
+      alternate_social_sharing_image,
+    },
   } = book
 
+  const hasAuthor = isFilled.contentRelationship<
+    'author',
+    string,
+    AuthorDocument['data']
+  >(author)
+
   return (
-    <section>
-      <PrismicLink href="/">Home</PrismicLink>
-      <PrismicRichText field={title} />
-      <PrismicRichText field={synopsis} />
-      <style jsx>{`
-        section {
-          margin: 4em auto;
-          text-align: center;
-        }
-      `}</style>
-    </section>
+    <>
+      <SEOHead
+        pageTitle={page_title}
+        seoTitle={seo_title}
+        seoDescription={seo_description}
+        altSocialSharingImage={alternate_social_sharing_image}
+      />
+      <section>
+        <p>
+          <PrismicLink href="/">Home</PrismicLink>
+        </p>
+        <PrismicNextImage field={cover} />
+        <PrismicRichText field={title} />
+        {isFilled.richText(what_its_retelling) && (
+          <p>
+            a retelling of{' '}
+            <em>
+              <PrismicText field={what_its_retelling} />
+            </em>
+          </p>
+        )}
+        {hasAuthor && (
+          <>
+            by{' '}
+            <PrismicLink href={author.url}>
+              <PrismicText field={author.data?.name} />
+            </PrismicLink>
+          </>
+        )}
+        {isFilled.link(amazon_link) && (
+          <p>
+            <PrismicLink field={amazon_link}>Buy it on Amazon</PrismicLink>
+          </p>
+        )}
+        <PrismicRichText field={synopsis} />
+        <style jsx>{`
+          section {
+            max-width: 60ch;
+            margin: 4em auto;
+          }
+        `}</style>
+      </section>
+    </>
   )
 }
 
@@ -44,7 +96,9 @@ export const getStaticProps: GetStaticProps<BookPageProps> = async ({
 
   if (params) {
     try {
-      const book = await client.getByUID('book', params.uid as string)
+      const book = await client.getByUID('book', params.uid as string, {
+        fetchLinks: ['author.name'],
+      })
       return {
         props: { book },
         revalidate: 5,

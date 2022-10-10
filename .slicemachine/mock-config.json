@@ -1,6 +1,25 @@
 {
   "_cts": {
-    "landing_page": {},
+    "landing_page": {
+      "hero_heading": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "hero_subheading": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "about_the_series": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 2
+        }
+      }
+    },
     "author": {
       "name": {
         "config": {
