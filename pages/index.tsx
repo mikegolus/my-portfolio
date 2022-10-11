@@ -141,9 +141,10 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
         @media screen and (max-width: 768px) {
           .books {
             grid-template-columns: repeat(2, minmax(0px, 1fr));
+            gap: 2rem;
           }
         }
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 360px) {
           .books {
             grid-template-columns: repeat(1, minmax(0px, 1fr));
           }
