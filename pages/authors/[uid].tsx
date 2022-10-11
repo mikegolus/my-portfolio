@@ -230,6 +230,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           }
           .portrait-container {
             position: relative;
+            top: unset;
             padding: 6vw 6vw 0;
             max-height: 60vh;
           }

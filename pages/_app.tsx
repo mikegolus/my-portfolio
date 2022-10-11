@@ -23,6 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </PrismicPreview>
       <style jsx>{`
         header {
+          position: sticky;
+          top: 0;
+          z-index: 1;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -30,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           border-bottom: 1px solid #ccc;
           font-family: var(--serifFont);
           font-size: 24px;
+          background: #fff;
         }
       `}</style>
     </PrismicProvider>
