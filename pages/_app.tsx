@@ -28,6 +28,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <li>
                 <PrismicLink href="/books">The Books</PrismicLink>
               </li>
+            </ul>
+            <ul>
               <li>
                 <PrismicLink href="/authors">The Authors</PrismicLink>
               </li>
@@ -73,19 +75,22 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           width: 100%;
         }
         header .logo {
-          width: 20%;
           text-align: center;
           font-size: 24px;
         }
         header ul {
-          display: contents;
+          display: flex;
+          flex: 1;
+          justify-content: space-evenly;
+          margin: 0;
+          padding: 0;
         }
         header li {
           list-style: none;
-          width: 20%;
           text-align: center;
           font-size: 18px;
           font-style: italic;
+          white-space: nowrap;
         }
         header li a {
           color: var(--fontColor);
@@ -97,10 +102,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         header li a:hover {
           border-color: #ccc;
         }
-        header li:nth-child(1) {
-          order: -2;
-        }
-        header li:nth-child(2) {
+        header ul:first-of-type {
           order: -1;
         }
         footer {

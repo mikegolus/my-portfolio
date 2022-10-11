@@ -1,6 +1,8 @@
 import { isFilled } from '@prismicio/helpers'
+import { PrismicNextImage } from '@prismicio/next'
 import { PrismicLink, PrismicText } from '@prismicio/react'
 import { GetStaticProps } from 'next'
+import Image from 'next/image'
 import { createClient } from '../../prismicio'
 import { BookDocument } from '../../types.generated'
 
@@ -21,7 +23,18 @@ const TheBooksPage = ({ books }: BooksPageProps) => {
                 {books.map((book) => (
                   <PrismicLink href={book.url} key={book.uid}>
                     <div className="book">
-                      <div className="book-image"></div>
+                      <div className="book-image">
+                        {isFilled.image(book.data.cover) ? (
+                          <PrismicNextImage field={book.data.cover} />
+                        ) : (
+                          <Image
+                            src="https://images.prismic.io/classics-retold/422a9d0d-12fa-42aa-982f-00b7c9103c28_book-cover-placeholder.jpg"
+                            layout="fill"
+                            objectFit="cover"
+                            alt="Book Cover Placeholder"
+                          />
+                        )}
+                      </div>
                       <span className="book-title">
                         <PrismicText field={book.data.title} />
                       </span>
@@ -70,6 +83,7 @@ const TheBooksPage = ({ books }: BooksPageProps) => {
           }
         }
         .book-image {
+          position: relative;
           padding-bottom: 150%;
           background: #ccc;
           margin-bottom: 0.5rem;

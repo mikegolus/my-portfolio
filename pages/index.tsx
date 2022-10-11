@@ -5,6 +5,8 @@ import { createClient } from '../prismicio'
 import { GetStaticProps } from 'next'
 import { SEOHead } from '../components/seo-head'
 import { isFilled } from '@prismicio/helpers'
+import { PrismicNextImage } from '@prismicio/next'
+import Image from 'next/image'
 
 interface LandingPageProps {
   page: LandingPageDocument
@@ -59,6 +61,9 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
                   field={hero_subheading}
                   components={{ heading4: ({ children }) => <p>{children}</p> }}
                 />
+                <PrismicLink href="/" className="button">
+                  <span>Preorder the entire series</span>
+                </PrismicLink>
               </div>
             </div>
           </div>
@@ -77,7 +82,18 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
                   {books.map((book) => (
                     <PrismicLink href={book.url} key={book.uid}>
                       <div className="book">
-                        <div className="book-image"></div>
+                        <div className="book-image">
+                          {isFilled.image(book.data.cover) ? (
+                            <PrismicNextImage field={book.data.cover} />
+                          ) : (
+                            <Image
+                              src="https://images.prismic.io/classics-retold/422a9d0d-12fa-42aa-982f-00b7c9103c28_book-cover-placeholder.jpg"
+                              layout="fill"
+                              objectFit="cover"
+                              alt="Book Cover Placeholder"
+                            />
+                          )}
+                        </div>
                         <span className="book-title">
                           <PrismicText field={book.data.title} />
                         </span>
@@ -139,7 +155,7 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
         .hero p {
           font-family: var(--serifFont);
           font-size: 28px;
-          margin: 0;
+          margin: 0 0 2rem;
         }
         .content-container {
           max-width: 1280px;
@@ -168,6 +184,7 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
           }
         }
         .book-image {
+          position: relative;
           padding-bottom: 150%;
           background: #ccc;
           margin-bottom: 0.5rem;

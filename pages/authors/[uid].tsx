@@ -15,6 +15,8 @@ import { FacebookIcon } from '../../tokens/social-icons/facebook'
 import { TwitterIcon } from '../../tokens/social-icons/twitter'
 import { InstagramIcon } from '../../tokens/social-icons/instagram'
 import { TikTokIcon } from '../../tokens/social-icons/tiktok'
+import Image from 'next/image'
+import { IconLink } from '../../components/icon-link'
 
 interface AuthorPageProps {
   author?: AuthorDocument
@@ -70,17 +72,24 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
         altSocialSharingImage={alternate_social_sharing_image}
       />
       <div className="viewport">
-        {isFilled.image(portrait) && (
-          <div className="portrait-container">
-            <div className="portrait">
+        <div className="portrait-container">
+          <div className="portrait">
+            {isFilled.image(portrait) ? (
               <PrismicNextImage
                 field={portrait}
                 layout="fill"
                 objectFit="cover"
               />
-            </div>
+            ) : (
+              <Image
+                src="https://images.prismic.io/classics-retold/e60f73a3-b06b-4935-b0ef-555ab6ec7aeb_placeholder-portrait.jpg"
+                layout="fill"
+                objectFit="cover"
+                alt="Placeholder Portrait"
+              />
+            )}
           </div>
-        )}
+        </div>
         <div className="content-container">
           <div className="content">
             <div className="heading">
@@ -98,34 +107,12 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
             <PrismicRichText field={bio} />
             {hasLinks && (
               <div className="links">
-                <PrismicLink field={facebook} className="link-icon">
-                  <FacebookIcon />
-                </PrismicLink>
-                <PrismicLink field={twitter}>
-                  <div className="link-icon">
-                    <TwitterIcon />
-                  </div>
-                </PrismicLink>
-                <PrismicLink field={instagram}>
-                  <div className="link-icon">
-                    <InstagramIcon />
-                  </div>
-                </PrismicLink>
-                <PrismicLink field={good_reads}>
-                  <div className="link-icon">
-                    <GoodReadsIcon />
-                  </div>
-                </PrismicLink>
-                <PrismicLink field={amazon}>
-                  <div className="link-icon">
-                    <AmazonIcon />
-                  </div>
-                </PrismicLink>
-                <PrismicLink field={tiktok}>
-                  <div className="link-icon">
-                    <TikTokIcon />
-                  </div>
-                </PrismicLink>
+                <IconLink field={facebook} icon="facebook" />
+                <IconLink field={twitter} icon="twitter" />
+                <IconLink field={instagram} icon="instagram" />
+                <IconLink field={good_reads} icon="good-reads" />
+                <IconLink field={amazon} icon="amazon" />
+                <IconLink field={tiktok} icon="tiktok" />
               </div>
             )}
             {hasBook && !book.isBroken && (
@@ -137,7 +124,16 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
                 )}
                 <PrismicLink href={book.url}>
                   <div className="book">
-                    <div className="cover"></div>
+                    <div className="cover-container">
+                      <div className="cover">
+                        <Image
+                          src="https://images.prismic.io/classics-retold/422a9d0d-12fa-42aa-982f-00b7c9103c28_book-cover-placeholder.jpg"
+                          layout="fill"
+                          objectFit="cover"
+                          alt="Book Cover Placeholder"
+                        />
+                      </div>
+                    </div>
                     <div className="book-content">
                       <h3>
                         <PrismicText field={book.data?.title} />
@@ -192,15 +188,6 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           gap: 1rem;
           margin: 2rem 0;
         }
-        .link-icon {
-          display: block;
-          border-radius: 50%;
-          border: 1px solid #ccc;
-          width: 48px;
-        }
-        .link-icon svg {
-          display: block;
-        }
         .heading {
           margin-bottom: 2rem;
         }
@@ -212,11 +199,14 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           border: 1px solid #ccc;
           color: var(--fontColor);
         }
-        .cover {
+        .cover-container {
           width: 6em;
-          height: 9em;
           background: #ccc;
           margin: -1px 0 -1px -1px;
+        }
+        .cover {
+          position: relative;
+          padding-bottom: 150%;
         }
         .book-content {
           padding: 2rem;
