@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PrismicProvider } from '@prismicio/react'
+import { PrismicLink, PrismicProvider } from '@prismicio/react'
 import { PrismicPreview } from '@prismicio/next'
 import { repositoryName } from '../prismicio'
 
@@ -16,8 +16,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       )}
     >
       <PrismicPreview repositoryName={repositoryName}>
+        <header>
+          <PrismicLink href="/">A Classic Retold</PrismicLink>
+        </header>
         <Component {...pageProps} />
       </PrismicPreview>
+      <style jsx>{`
+        header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: calc(4rem - 1px);
+          border-bottom: 1px solid #ccc;
+          font-family: var(--serifFont);
+          font-size: 24px;
+        }
+      `}</style>
     </PrismicProvider>
   )
 }

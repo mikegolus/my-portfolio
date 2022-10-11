@@ -40,48 +40,54 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
         seoDescription={seo_description}
         altSocialSharingImage={alternate_social_sharing_image}
       />
-      <section>
-        <PrismicRichText field={hero_heading} />
-        <PrismicRichText
-          field={hero_subheading}
-          components={{ heading4: ({ children }) => <p>{children}</p> }}
-        />
-        <PrismicRichText field={about_the_series} />
+      <div className="viewport">
+        <div className="content-container">
+          <PrismicRichText field={hero_heading} />
+          <PrismicRichText
+            field={hero_subheading}
+            components={{ heading4: ({ children }) => <p>{children}</p> }}
+          />
+          <PrismicRichText field={about_the_series} />
 
-        {hasBooks && (
-          <>
-            <h3>The Books</h3>
-            {books.map((book) => (
-              <p key={book.uid}>
-                <PrismicLink href={book.url}>
-                  <PrismicText field={book.data.title} />
-                </PrismicLink>
-                <br />
-                {isFilled.richText(book.data.what_its_retelling) && (
-                  <PrismicText field={book.data.what_its_retelling} />
-                )}
-              </p>
-            ))}
-          </>
-        )}
+          {hasBooks && (
+            <>
+              <h3>The Books</h3>
+              {books.map((book) => (
+                <p key={book.uid}>
+                  <PrismicLink href={book.url}>
+                    <PrismicText field={book.data.title} />
+                  </PrismicLink>
+                  <br />
+                  {isFilled.richText(book.data.what_its_retelling) && (
+                    <PrismicText field={book.data.what_its_retelling} />
+                  )}
+                </p>
+              ))}
+            </>
+          )}
 
-        {hasAuthors && (
-          <>
-            <h3>Meet the Authors</h3>
-            {authors.map((author) => (
-              <p key={author.uid}>
-                <PrismicLink href={author.url}>
-                  <PrismicText field={author.data.name} />
-                </PrismicLink>
-              </p>
-            ))}
-          </>
-        )}
-      </section>
+          {hasAuthors && (
+            <>
+              <h3>Meet the Authors</h3>
+              {authors.map((author) => (
+                <p key={author.uid}>
+                  <PrismicLink href={author.url}>
+                    <PrismicText field={author.data.name} />
+                  </PrismicLink>
+                </p>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
       <style jsx>{`
-        section {
-          max-width: 60ch;
-          margin: 4em auto;
+        .content-container {
+          padding: 4vw;
+        }
+        @media screen and (max-width: 640px) {
+          .content-container {
+            padding: 6vw;
+          }
         }
       `}</style>
     </>

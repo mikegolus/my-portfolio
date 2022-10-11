@@ -49,41 +49,44 @@ const Book = ({ book }: BookPageProps) => {
         seoDescription={seo_description}
         altSocialSharingImage={alternate_social_sharing_image}
       />
-      <section>
-        <p>
-          <PrismicLink href="/">Home</PrismicLink>
-        </p>
-        <PrismicNextImage field={cover} />
-        <PrismicRichText field={title} />
-        {isFilled.richText(what_its_retelling) && (
-          <p>
-            a retelling of{' '}
-            <em>
-              <PrismicText field={what_its_retelling} />
-            </em>
-          </p>
-        )}
-        {hasAuthor && (
-          <>
-            by{' '}
-            <PrismicLink href={author.url}>
-              <PrismicText field={author.data?.name} />
-            </PrismicLink>
-          </>
-        )}
-        {isFilled.link(amazon_link) && (
-          <p>
-            <PrismicLink field={amazon_link}>Buy it on Amazon</PrismicLink>
-          </p>
-        )}
-        <PrismicRichText field={synopsis} />
-        <style jsx>{`
-          section {
-            max-width: 60ch;
-            margin: 4em auto;
+      <div className="viewport">
+        <div className="content-container">
+          <PrismicNextImage field={cover} />
+          <PrismicRichText field={title} />
+          {isFilled.richText(what_its_retelling) && (
+            <p>
+              a retelling of{' '}
+              <em>
+                <PrismicText field={what_its_retelling} />
+              </em>
+            </p>
+          )}
+          {hasAuthor && (
+            <>
+              by{' '}
+              <PrismicLink href={author.url}>
+                <PrismicText field={author.data?.name} />
+              </PrismicLink>
+            </>
+          )}
+          {isFilled.link(amazon_link) && (
+            <p>
+              <PrismicLink field={amazon_link}>Buy it on Amazon</PrismicLink>
+            </p>
+          )}
+          <PrismicRichText field={synopsis} />
+        </div>
+      </div>
+      <style jsx>{`
+        .content-container {
+          padding: 4vw;
+        }
+        @media screen and (max-width: 640px) {
+          .content-container {
+            padding: 6vw;
           }
-        `}</style>
-      </section>
+        }
+      `}</style>
     </>
   )
 }
