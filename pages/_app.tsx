@@ -6,7 +6,7 @@ import { repositoryName } from '../prismicio'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <PrismicProvider
       internalLinkComponent={({ href, ...props }) => (
@@ -17,9 +17,41 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <PrismicPreview repositoryName={repositoryName}>
         <header>
-          <PrismicLink href="/">A Classic Retold</PrismicLink>
+          <nav>
+            <div className="logo">
+              <PrismicLink href="/">A Classic Retold</PrismicLink>
+            </div>
+            <ul>
+              <li>
+                <PrismicLink href="/">Home</PrismicLink>
+              </li>
+              <li>
+                <PrismicLink href="/books">The Books</PrismicLink>
+              </li>
+              <li>
+                <PrismicLink href="/authors">The Authors</PrismicLink>
+              </li>
+              <li>
+                <PrismicLink href="/get-in-touch">Get In Touch</PrismicLink>
+              </li>
+            </ul>
+          </nav>
         </header>
         <Component {...pageProps} />
+        <footer>
+          <div className="footer-content">
+            <div className="copyright">
+              &copy;2022 A Classic Retold. All rights reserved.
+            </div>
+            <PrismicLink
+              href="https://www.takeshape.rocks"
+              className="ts-logo-wrapper"
+            >
+              <div className="ts-logo"></div>
+              <div className="made-by">Website by TAKE SHAPE</div>
+            </PrismicLink>
+          </div>
+        </footer>
       </PrismicPreview>
       <style jsx>{`
         header {
@@ -29,11 +61,61 @@ function MyApp({ Component, pageProps }: AppProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: calc(4rem);
-          border-bottom: 1px solid #ccc;
+          height: 4rem;
           font-family: var(--serifFont);
-          font-size: 24px;
           background: #fff;
+        }
+        nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          max-width: 1280px;
+          width: 100%;
+        }
+        header .logo {
+          width: 20%;
+          text-align: center;
+          font-size: 24px;
+        }
+        header ul {
+          display: contents;
+        }
+        header li {
+          list-style: none;
+          width: 20%;
+          text-align: center;
+          font-size: 18px;
+          font-style: italic;
+        }
+        header li a {
+          color: var(--fontColor);
+          display: inline-block;
+          padding: 0.4em 1.5em;
+          border: 1px solid transparent;
+          transition: 250ms;
+        }
+        header li a:hover {
+          border-color: #ccc;
+        }
+        header li:nth-child(1) {
+          order: -2;
+        }
+        header li:nth-child(2) {
+          order: -1;
+        }
+        footer {
+          background: #202020;
+          padding: 3vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+        }
+        .footer-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
         }
       `}</style>
     </PrismicProvider>

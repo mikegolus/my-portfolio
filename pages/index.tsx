@@ -1,24 +1,17 @@
 import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/react'
-import {
-  AuthorDocument,
-  BookDocument,
-  LandingPageDocument,
-} from '../types.generated'
+import { BookDocument, LandingPageDocument } from '../types.generated'
 
 import { createClient } from '../prismicio'
 import { GetStaticProps } from 'next'
 import { SEOHead } from '../components/seo-head'
 import { isFilled } from '@prismicio/helpers'
-import { PrismicNextImage } from '@prismicio/next'
-import Image from 'next/image'
 
 interface LandingPageProps {
   page: LandingPageDocument
-  authors: AuthorDocument[]
   books: BookDocument[]
 }
 
-const LandingPage = ({ page, authors, books }: LandingPageProps) => {
+const LandingPage = ({ page, books }: LandingPageProps) => {
   const {
     data: {
       hero_heading,
@@ -31,7 +24,6 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
     },
   } = page
 
-  const hasAuthors = authors.length > 0
   const hasBooks = books.length > 0
 
   return (
@@ -44,83 +36,109 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
       />
       <div className="viewport">
         <div className="landing-page">
-          <div className="hero">
-            <div>
-              <PrismicRichText
-                field={hero_heading}
-                components={{ heading1: ({ children }) => <h1>{children}</h1> }}
-              />
-              <PrismicRichText
-                field={hero_subheading}
-                components={{ heading4: ({ children }) => <p>{children}</p> }}
-              />
+          <div className="hero-container">
+            <div className="hero">
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div className="firefly"></div>
+              <div>
+                <PrismicRichText
+                  field={hero_heading}
+                  components={{
+                    heading1: ({ children }) => <h1>{children}</h1>,
+                  }}
+                />
+                <PrismicRichText
+                  field={hero_subheading}
+                  components={{ heading4: ({ children }) => <p>{children}</p> }}
+                />
+              </div>
             </div>
           </div>
           <div className="content-container">
             <div className="content">
+              <h2>About the Series</h2>
               <PrismicRichText field={about_the_series} />
-
-              {hasBooks && (
-                <>
-                  <h2>The Books</h2>
-                  <div className="books">
-                    {books.map((book) => (
-                      <PrismicLink href={book.url} key={book.uid}>
-                        <div className="book">
-                          <div className="book-image"></div>
-                          <span className="book-title">
-                            <PrismicText field={book.data.title} />
-                          </span>
-                          <br />
-                          {isFilled.richText(book.data.what_its_retelling) && (
-                            <PrismicText field={book.data.what_its_retelling} />
-                          )}
-                        </div>
-                      </PrismicLink>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {hasAuthors && (
-                <>
-                  <h2>Meet the Authors</h2>
-                  {authors.map((author) => (
-                    <p key={author.uid}>
-                      <PrismicLink href={author.url}>
-                        <PrismicText field={author.data.name} />
-                      </PrismicLink>
-                    </p>
-                  ))}
-                </>
-              )}
             </div>
           </div>
+
+          {hasBooks && (
+            <div className="content-container">
+              <div className="content">
+                <h2>The Books</h2>
+                <div className="books">
+                  {books.map((book) => (
+                    <PrismicLink href={book.url} key={book.uid}>
+                      <div className="book">
+                        <div className="book-image"></div>
+                        <span className="book-title">
+                          <PrismicText field={book.data.title} />
+                        </span>
+                        <br />
+                        {isFilled.richText(book.data.what_its_retelling) && (
+                          <PrismicText field={book.data.what_its_retelling} />
+                        )}
+                      </div>
+                    </PrismicLink>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <style jsx>{`
         .landing-page {
           width: 100%;
         }
-        .hero {
+        .hero-container {
+          position: relative;
           min-height: calc(100vh - 4rem);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 6vw;
+        }
+        .hero {
+          position: absolute;
+          inset: 0 2vw 2vw;
           background: url(https://images.unsplash.com/photo-1518709268805-4e9042af9f23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2184&q=80);
           background-position: center;
           background-size: cover;
+          padding: 8vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           color: #fff;
           text-align: center;
+          overflow: hidden;
+        }
+        .hero::before {
+          content: '';
+          position: absolute;
+          inset: 1.5rem;
+          border: 1px solid #fff;
+          mix-blend-mode: overlay;
+          pointer-events: none;
+        }
+        .hero::after {
+          content: '';
+          position: absolute;
+          inset: 1rem;
+          border: 3px solid #fff;
+          mix-blend-mode: overlay;
+          pointer-events: none;
         }
         .hero h1 {
           margin: 0 0 0.15em;
-          font-size: 72px;
+          font-size: 64px;
         }
         .hero p {
           font-family: var(--serifFont);
-          font-size: 32px;
+          font-size: 28px;
           margin: 0;
         }
         .content-container {
@@ -161,10 +179,10 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
         }
         @media screen and (max-width: 640px) {
           .hero h1 {
-            font-size: 56px;
+            font-size: 48px;
           }
           .hero p {
-            font-size: 24px;
+            font-size: 20px;
           }
           .content {
             padding: 6vw;
@@ -182,12 +200,10 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
 
   try {
     const page = await client.getSingle('landing_page')
-    const authors = await client.getAllByType('author')
     const books = await client.getAllByType('book')
     return {
       props: {
         page,
-        authors,
         books,
       },
       revalidate: 5,

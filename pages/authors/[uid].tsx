@@ -98,10 +98,8 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
             <PrismicRichText field={bio} />
             {hasLinks && (
               <div className="links">
-                <PrismicLink field={facebook}>
-                  <div className="link-icon">
-                    <FacebookIcon />
-                  </div>
+                <PrismicLink field={facebook} className="link-icon">
+                  <FacebookIcon />
                 </PrismicLink>
                 <PrismicLink field={twitter}>
                   <div className="link-icon">
@@ -179,7 +177,6 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           position: relative;
           height: 100%;
           overflow: hidden;
-          border-radius: 0 16vmin;
         }
         .content-container {
           flex: 1;
