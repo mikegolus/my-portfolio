@@ -55,37 +55,39 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
             </div>
           </div>
           <div className="content-container">
-            <PrismicRichText field={about_the_series} />
+            <div className="content">
+              <PrismicRichText field={about_the_series} />
 
-            {hasBooks && (
-              <>
-                <h3>The Books</h3>
-                {books.map((book) => (
-                  <p key={book.uid}>
-                    <PrismicLink href={book.url}>
-                      <PrismicText field={book.data.title} />
-                    </PrismicLink>
-                    <br />
-                    {isFilled.richText(book.data.what_its_retelling) && (
-                      <PrismicText field={book.data.what_its_retelling} />
-                    )}
-                  </p>
-                ))}
-              </>
-            )}
+              {hasBooks && (
+                <>
+                  <h3>The Books</h3>
+                  {books.map((book) => (
+                    <p key={book.uid}>
+                      <PrismicLink href={book.url}>
+                        <PrismicText field={book.data.title} />
+                      </PrismicLink>
+                      <br />
+                      {isFilled.richText(book.data.what_its_retelling) && (
+                        <PrismicText field={book.data.what_its_retelling} />
+                      )}
+                    </p>
+                  ))}
+                </>
+              )}
 
-            {hasAuthors && (
-              <>
-                <h3>Meet the Authors</h3>
-                {authors.map((author) => (
-                  <p key={author.uid}>
-                    <PrismicLink href={author.url}>
-                      <PrismicText field={author.data.name} />
-                    </PrismicLink>
-                  </p>
-                ))}
-              </>
-            )}
+              {hasAuthors && (
+                <>
+                  <h3>Meet the Authors</h3>
+                  {authors.map((author) => (
+                    <p key={author.uid}>
+                      <PrismicLink href={author.url}>
+                        <PrismicText field={author.data.name} />
+                      </PrismicLink>
+                    </p>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -115,6 +117,9 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
           margin: 0;
         }
         .content-container {
+          max-width: 1280px;
+        }
+        .content {
           padding: 4vw;
         }
         @media screen and (max-width: 640px) {
@@ -124,7 +129,7 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
           .hero p {
             font-size: 24px;
           }
-          .content-container {
+          .content {
             padding: 6vw;
           }
         }

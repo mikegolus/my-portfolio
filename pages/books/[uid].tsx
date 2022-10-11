@@ -78,6 +78,10 @@ const Book = ({ book }: BookPageProps) => {
         </div>
       </div>
       <style jsx>{`
+        .viewport {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
         .content-container {
           padding: 4vw;
         }

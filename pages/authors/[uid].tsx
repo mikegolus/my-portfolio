@@ -163,6 +163,10 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
         </div>
       </div>
       <style jsx>{`
+        .viewport {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
         .portrait-container {
           position: sticky;
           z-index: -1;
