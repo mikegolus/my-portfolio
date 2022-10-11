@@ -9,6 +9,8 @@ import { createClient } from '../prismicio'
 import { GetStaticProps } from 'next'
 import { SEOHead } from '../components/seo-head'
 import { isFilled } from '@prismicio/helpers'
+import { PrismicNextImage } from '@prismicio/next'
+import Image from 'next/image'
 
 interface LandingPageProps {
   page: LandingPageDocument
@@ -60,24 +62,29 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
 
               {hasBooks && (
                 <>
-                  <h3>The Books</h3>
-                  {books.map((book) => (
-                    <p key={book.uid}>
-                      <PrismicLink href={book.url}>
-                        <PrismicText field={book.data.title} />
+                  <h2>The Books</h2>
+                  <div className="books">
+                    {books.map((book) => (
+                      <PrismicLink href={book.url} key={book.uid}>
+                        <div className="book">
+                          <div className="book-image"></div>
+                          <span className="book-title">
+                            <PrismicText field={book.data.title} />
+                          </span>
+                          <br />
+                          {isFilled.richText(book.data.what_its_retelling) && (
+                            <PrismicText field={book.data.what_its_retelling} />
+                          )}
+                        </div>
                       </PrismicLink>
-                      <br />
-                      {isFilled.richText(book.data.what_its_retelling) && (
-                        <PrismicText field={book.data.what_its_retelling} />
-                      )}
-                    </p>
-                  ))}
+                    ))}
+                  </div>
                 </>
               )}
 
               {hasAuthors && (
                 <>
-                  <h3>Meet the Authors</h3>
+                  <h2>Meet the Authors</h2>
                   {authors.map((author) => (
                     <p key={author.uid}>
                       <PrismicLink href={author.url}>
@@ -122,6 +129,34 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
         }
         .content {
           padding: 4vw;
+        }
+        .book {
+          color: var(--fontColor);
+        }
+        .books {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0px, 1fr));
+          gap: 4rem;
+        }
+        @media screen and (max-width: 768px) {
+          .books {
+            grid-template-columns: repeat(2, minmax(0px, 1fr));
+          }
+        }
+        @media screen and (max-width: 480px) {
+          .books {
+            grid-template-columns: repeat(1, minmax(0px, 1fr));
+          }
+        }
+        .book-image {
+          padding-bottom: 150%;
+          background: #ccc;
+          margin-bottom: 0.5rem;
+        }
+        .book-title {
+          color: var(--linkColor);
+          font-family: var(--serifFont);
+          font-size: 1.5rem;
         }
         @media screen and (max-width: 640px) {
           .hero h1 {

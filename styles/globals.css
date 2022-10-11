@@ -1,5 +1,6 @@
 :root {
   --fontColor: #202020;
+  --linkColor: #3C75AA;
   --serifFont: "EB Garamond", serif;
   --sansSerifFont: "Open Sans", sans-serif;
 }
@@ -44,7 +45,7 @@ p {
 }
 
 a {
-  color: #3C75AA;
+  color: var(--linkColor);
   text-decoration: none;
 }
 
