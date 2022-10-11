@@ -204,7 +204,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           margin-bottom: 2rem;
         }
         h1 {
-          margin: 0;
+          margin: 0 0 0.25em;
         }
         .book {
           display: flex;

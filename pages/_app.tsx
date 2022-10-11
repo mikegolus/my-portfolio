@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: calc(4rem - 1px);
+          height: calc(4rem);
           border-bottom: 1px solid #ccc;
           font-family: var(--serifFont);
           font-size: 24px;
