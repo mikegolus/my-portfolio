@@ -118,6 +118,7 @@ const LandingPage = ({ page, authors, books }: LandingPageProps) => {
         }
         .content-container {
           max-width: 1280px;
+          margin: 0 auto;
         }
         .content {
           padding: 4vw;
