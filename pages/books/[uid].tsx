@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { buildPaths } from '../../utils/build-paths'
 import { isFilled } from '@prismicio/helpers'
 import { PrismicNextImage } from '@prismicio/next'
-import { Layout } from '../../components'
+import { Layout, Section } from '../../components'
 
 interface BookPageProps {
   book?: BookDocument
@@ -48,48 +48,32 @@ const Book = ({ book }: BookPageProps) => {
       seoDescription={seo_description}
       altSocialSharingImage={alternate_social_sharing_image}
     >
-      <div className="viewport">
-        <div className="content-container">
-          <PrismicNextImage field={cover} />
-          <PrismicRichText field={title} />
-          {isFilled.richText(what_its_retelling) && (
-            <p>
-              a retelling of{' '}
-              <em>
-                <PrismicText field={what_its_retelling} />
-              </em>
-            </p>
-          )}
-          {hasAuthor && (
-            <>
-              by{' '}
-              <PrismicLink href={author.url}>
-                <PrismicText field={author.data?.name} />
-              </PrismicLink>
-            </>
-          )}
-          {isFilled.link(amazon_link) && (
-            <p>
-              <PrismicLink field={amazon_link}>Buy it on Amazon</PrismicLink>
-            </p>
-          )}
-          <PrismicRichText field={synopsis} />
-        </div>
-      </div>
-      <style jsx>{`
-        .viewport {
-          max-width: 1280px;
-          margin: 0 auto;
-        }
-        .content-container {
-          padding: 4vw;
-        }
-        @media screen and (max-width: 640px) {
-          .content-container {
-            padding: 6vw;
-          }
-        }
-      `}</style>
+      <Section>
+        <PrismicNextImage field={cover} />
+        <PrismicRichText field={title} />
+        {isFilled.richText(what_its_retelling) && (
+          <p>
+            a retelling of{' '}
+            <em>
+              <PrismicText field={what_its_retelling} />
+            </em>
+          </p>
+        )}
+        {hasAuthor && (
+          <>
+            by{' '}
+            <PrismicLink href={author.url}>
+              <PrismicText field={author.data?.name} />
+            </PrismicLink>
+          </>
+        )}
+        {isFilled.link(amazon_link) && (
+          <p>
+            <PrismicLink field={amazon_link}>Buy it on Amazon</PrismicLink>
+          </p>
+        )}
+        <PrismicRichText field={synopsis} />
+      </Section>
     </Layout>
   )
 }

@@ -28,6 +28,7 @@ export const SiteHeader = () => {
 }
 
 const StyledSiteHeader = styled.header({
+  flexShrink: 0,
   position: 'sticky',
   top: 0,
   zIndex: 1,

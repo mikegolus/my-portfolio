@@ -64,7 +64,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
       seoDescription={seo_description}
       altSocialSharingImage={alternate_social_sharing_image}
     >
-      <div className="viewport">
+      <div className="author-content">
         <div className="portrait-container">
           <div className="portrait">
             {isFilled.image(portrait) ? (
@@ -150,17 +150,17 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
         </div>
       </div>
       <style jsx>{`
-        .viewport {
-          max-width: 1280px;
-          margin: 0 auto;
+        .author-content {
+          display: flex;
+          flex: 1;
+          padding: 4vh 6vw;
         }
         .portrait-container {
           position: sticky;
           z-index: -1;
           top: 4rem;
           flex: 1;
-          height: calc(100vh - 4rem);
-          padding: 4vw 2vw 4vw 4vw;
+          padding: 0 2vw 0 0;
         }
         .portrait {
           position: relative;
@@ -170,7 +170,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
         .content-container {
           flex: 1;
           align-self: center;
-          padding: 4vw 4vw 4vw 2vw;
+          padding: 0 0 0 2vw;
         }
         .content {
           max-width: 68ch;
@@ -209,17 +209,23 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           margin: 0;
         }
         @media screen and (max-width: 640px) {
-          .viewport {
+          .author-content {
             display: block;
+            flex: unset;
+            padding: 4vh 6vw;
           }
           .portrait-container {
             position: relative;
             top: unset;
-            padding: 6vw 6vw 0;
-            max-height: 60vh;
+            padding: 0 0 100%;
+            margin-bottom: 6vh;
+          }
+          .portrait {
+            position: absolute;
+            inset: 0;
           }
           .content-container {
-            padding: 6vw;
+            padding: 0;
           }
         }
       `}</style>

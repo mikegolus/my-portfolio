@@ -11,9 +11,10 @@ export const SiteFooter = () => (
 )
 
 const StyledSiteFooter = styled.footer({
+  flexShrink: 0,
   display: 'flex',
   background: '#202020',
-  padding: '3vw',
+  padding: '6vh 3vw',
   alignItems: 'center',
   justifyContent: 'center',
   color: '#fff',

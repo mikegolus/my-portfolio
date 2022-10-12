@@ -6,8 +6,7 @@ import { GetStaticProps } from 'next'
 import { isFilled } from '@prismicio/helpers'
 import { PrismicNextImage } from '@prismicio/next'
 import Image from 'next/image'
-import { Fireflies } from '../components'
-import { Layout } from '../components'
+import { Fireflies, Section, Layout } from '../components'
 
 interface LandingPageProps {
   page: LandingPageDocument
@@ -36,75 +35,64 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
       seoDescription={seo_description}
       altSocialSharingImage={alternate_social_sharing_image}
     >
-      <div className="viewport">
-        <div className="landing-page">
-          <div className="hero-container">
-            <div className="hero">
-              <Fireflies quantity={25} />
-              <div>
-                <PrismicRichText
-                  field={hero_heading}
-                  components={{
-                    heading1: ({ children }) => <h1>{children}</h1>,
-                  }}
-                />
-                <PrismicRichText
-                  field={hero_subheading}
-                  components={{ heading4: ({ children }) => <p>{children}</p> }}
-                />
-                <PrismicLink href="/" className="button">
-                  <span>Preorder the entire series</span>
-                </PrismicLink>
-              </div>
-            </div>
+      <div className="hero-container">
+        <div className="hero">
+          <Fireflies quantity={25} />
+          <div>
+            <PrismicRichText
+              field={hero_heading}
+              components={{
+                heading1: ({ children }) => <h1>{children}</h1>,
+              }}
+            />
+            <PrismicRichText
+              field={hero_subheading}
+              components={{ heading4: ({ children }) => <p>{children}</p> }}
+            />
+            <PrismicLink href="/" className="button">
+              <span>Preorder the entire series</span>
+            </PrismicLink>
           </div>
-          <div className="content-container">
-            <div className="content">
-              <h2>About the Series</h2>
-              <PrismicRichText field={about_the_series} />
-            </div>
-          </div>
-
-          {hasBooks && (
-            <div className="content-container">
-              <div className="content">
-                <h2>The Books</h2>
-                <div className="books">
-                  {books.map((book) => (
-                    <PrismicLink href={book.url} key={book.uid}>
-                      <div className="book">
-                        <div className="book-image">
-                          {isFilled.image(book.data.cover) ? (
-                            <PrismicNextImage field={book.data.cover} />
-                          ) : (
-                            <Image
-                              src="https://images.prismic.io/classics-retold/422a9d0d-12fa-42aa-982f-00b7c9103c28_book-cover-placeholder.jpg"
-                              layout="fill"
-                              objectFit="cover"
-                              alt="Book Cover Placeholder"
-                            />
-                          )}
-                        </div>
-                        <span className="book-title">
-                          <PrismicText field={book.data.title} />
-                        </span>
-                        <br />
-                        {isFilled.richText(book.data.what_its_retelling) && (
-                          <PrismicText field={book.data.what_its_retelling} />
-                        )}
-                      </div>
-                    </PrismicLink>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
+      <Section>
+        <h2>About the Series</h2>
+        <PrismicRichText field={about_the_series} />
+      </Section>
+
+      {hasBooks && (
+        <Section>
+          <h2>The Books</h2>
+          <div className="books">
+            {books.map((book) => (
+              <PrismicLink href={book.url} key={book.uid}>
+                <div className="book">
+                  <div className="book-image">
+                    {isFilled.image(book.data.cover) ? (
+                      <PrismicNextImage field={book.data.cover} />
+                    ) : (
+                      <Image
+                        src="https://images.prismic.io/classics-retold/422a9d0d-12fa-42aa-982f-00b7c9103c28_book-cover-placeholder.jpg"
+                        layout="fill"
+                        objectFit="cover"
+                        alt="Book Cover Placeholder"
+                      />
+                    )}
+                  </div>
+                  <span className="book-title">
+                    <PrismicText field={book.data.title} />
+                  </span>
+                  <br />
+                  {isFilled.richText(book.data.what_its_retelling) && (
+                    <PrismicText field={book.data.what_its_retelling} />
+                  )}
+                </div>
+              </PrismicLink>
+            ))}
+          </div>
+        </Section>
+      )}
       <style jsx>{`
-        .landing-page {
-          width: 100%;
-        }
         .hero-container {
           position: relative;
           min-height: calc(100vh - 4rem);
