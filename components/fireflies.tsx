@@ -73,9 +73,9 @@ const Firefly = styled.div<{
   position: 'absolute',
   left: '50%',
   top: '50%',
-  width: '0.4vw',
-  height: '0.4vw',
-  margin: '-0.2vw 0 0 9.8vw',
+  width: '0.4rem',
+  height: '0.4rem',
+  margin: '-0.2rem 0 0 calc(10vw - 0.2rem)',
   animation: `${move} ease 200s alternate infinite`,
   '&::before': {
     content: '""',
