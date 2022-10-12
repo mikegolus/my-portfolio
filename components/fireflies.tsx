@@ -12,13 +12,14 @@ export const Fireflies = ({ quantity = 10 }: FirefliesProps) => {
   return (
     <StyledFireflies>
       {[...Array(quantity)].map((_q, i) => (
-        <Firefly
-          key={i}
-          move={move[i]}
-          rotationSpeed={getRandomInt(8000, 18000)}
-          flashDuration={getRandomInt(5000, 11000)}
-          flashDelay={getRandomInt(500, 8000)}
-        />
+        <FireflyContainer key={i} move={move[i]}>
+          <Firefly rotationSpeed={getRandomInt(8000, 18000)}>
+            <Flash
+              flashDuration={getRandomInt(5000, 11000)}
+              flashDelay={getRandomInt(500, 8000)}
+            />
+          </Firefly>
+        </FireflyContainer>
       ))}
     </StyledFireflies>
   )
@@ -40,8 +41,16 @@ const drift = keyframes({
 })
 
 const flash = keyframes({
-  '0%, 30%, 100%': { opacity: 0, boxShadow: '0 0 0vw 0vw yellow' },
-  '5%': { opacity: 1, boxShadow: '0 0 2vw 0.4vw yellow' },
+  '0%, 30%, 100%': {
+    opacity: 0,
+    boxShadow: '0 0 0vw 0vw yellow',
+    transform: 'scale(0.25)',
+  },
+  '5%': {
+    opacity: 1,
+    boxShadow: '0 0 2vw 0.4vw yellow',
+    transform: 'scale(1)',
+  },
 })
 
 const buildMoveAnimationArray = (quantity: number) =>
@@ -64,12 +73,9 @@ const buildMoveAnimationArray = (quantity: number) =>
     )
   })
 
-const Firefly = styled.div<{
+const FireflyContainer = styled.div<{
   move: Keyframes
-  rotationSpeed: number
-  flashDuration: number
-  flashDelay: number
-}>(({ move, rotationSpeed, flashDuration, flashDelay }) => ({
+}>(({ move }) => ({
   position: 'absolute',
   left: '50%',
   top: '50%',
@@ -77,30 +83,29 @@ const Firefly = styled.div<{
   height: '0.4rem',
   margin: '-0.2rem 0 0 calc(10vw - 0.2rem)',
   animation: `${move} ease 200s alternate infinite`,
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    transformOrigin: '-10vw',
-    background: 'black',
-    opacity: 0.1,
-    animation: `${drift} ease alternate infinite`,
-    animationDuration: `${rotationSpeed}ms`,
-  },
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    transformOrigin: '-10vw',
-    background: 'white',
-    opacity: 0,
-    boxShadow: '0 0 0vw 0vw yellow',
-    animation: `${drift} ease alternate infinite, ${flash} ease infinite`,
-    animationDuration: `${rotationSpeed}ms, ${flashDuration}ms`,
-    animationDelay: `0ms, ${flashDelay}ms`,
-  },
+}))
+
+const Firefly = styled.div<{
+  rotationSpeed: number
+}>(({ rotationSpeed }) => ({
+  position: 'absolute',
+  inset: 0,
+  transformOrigin: '-10vw',
+  animation: `${drift} ease alternate infinite`,
+  animationDuration: `${rotationSpeed}ms`,
+}))
+
+const Flash = styled.div<{
+  flashDuration: number
+  flashDelay: number
+}>(({ flashDuration, flashDelay }) => ({
+  position: 'absolute',
+  inset: 0,
+  borderRadius: '50%',
+  background: 'white',
+  opacity: 0,
+  boxShadow: '0 0 0vw 0vw yellow',
+  animation: `${drift} ease alternate infinite, ${flash} ease infinite`,
+  animationDuration: `${flashDuration}ms`,
+  animationDelay: `${flashDelay}ms`,
 }))
