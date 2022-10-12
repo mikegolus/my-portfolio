@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { buildPaths } from '../../utils/build-paths'
 import { isFilled } from '@prismicio/helpers'
 import { PrismicNextImage } from '@prismicio/next'
-import { SEOHead } from '../../components/seo-head'
+import { Layout } from '../../components'
 
 interface BookPageProps {
   book?: BookDocument
@@ -42,13 +42,12 @@ const Book = ({ book }: BookPageProps) => {
   >(author)
 
   return (
-    <>
-      <SEOHead
-        pageTitle={page_title}
-        seoTitle={seo_title}
-        seoDescription={seo_description}
-        altSocialSharingImage={alternate_social_sharing_image}
-      />
+    <Layout
+      pageTitle={page_title}
+      seoTitle={seo_title}
+      seoDescription={seo_description}
+      altSocialSharingImage={alternate_social_sharing_image}
+    >
       <div className="viewport">
         <div className="content-container">
           <PrismicNextImage field={cover} />
@@ -91,7 +90,7 @@ const Book = ({ book }: BookPageProps) => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 

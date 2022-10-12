@@ -3,6 +3,7 @@ import { PrismicNextImage } from '@prismicio/next'
 import { PrismicLink, PrismicText } from '@prismicio/react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
+import { Layout } from '../../components'
 import { createClient } from '../../prismicio'
 import { BookDocument } from '../../types.generated'
 
@@ -13,7 +14,7 @@ interface BooksPageProps {
 const TheBooksPage = ({ books }: BooksPageProps) => {
   const hasBooks = books.length > 0
   return (
-    <>
+    <Layout>
       <div className="viewport">
         <div className="content-container">
           <div className="content">
@@ -108,7 +109,7 @@ const TheBooksPage = ({ books }: BooksPageProps) => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 

@@ -1,5 +1,6 @@
 import { PrismicLink, PrismicText } from '@prismicio/react'
 import { GetStaticProps } from 'next'
+import { Layout } from '../../components'
 import { createClient } from '../../prismicio'
 import { AuthorDocument } from '../../types.generated'
 
@@ -10,7 +11,7 @@ interface AuthorsPageProps {
 const TheAuthorsPage = ({ authors }: AuthorsPageProps) => {
   const hasAuthors = authors.length > 0
   return (
-    <>
+    <Layout>
       <div className="viewport">
         <div className="content-container">
           <div className="content">
@@ -86,7 +87,7 @@ const TheAuthorsPage = ({ authors }: AuthorsPageProps) => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 

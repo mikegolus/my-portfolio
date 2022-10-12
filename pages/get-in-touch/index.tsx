@@ -1,6 +1,8 @@
+import { Layout } from '../../components'
+
 const TheBooksPage = () => {
   return (
-    <>
+    <Layout>
       <div className="viewport">
         <div className="content-container">
           <div className="content">
@@ -37,7 +39,7 @@ const TheBooksPage = () => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 

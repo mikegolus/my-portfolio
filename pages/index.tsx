@@ -3,10 +3,11 @@ import { BookDocument, LandingPageDocument } from '../types.generated'
 
 import { createClient } from '../prismicio'
 import { GetStaticProps } from 'next'
-import { SEOHead } from '../components/seo-head'
 import { isFilled } from '@prismicio/helpers'
 import { PrismicNextImage } from '@prismicio/next'
 import Image from 'next/image'
+import { Fireflies } from '../components'
+import { Layout } from '../components'
 
 interface LandingPageProps {
   page: LandingPageDocument
@@ -29,27 +30,17 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
   const hasBooks = books.length > 0
 
   return (
-    <>
-      <SEOHead
-        pageTitle={page_title}
-        seoTitle={seo_title}
-        seoDescription={seo_description}
-        altSocialSharingImage={alternate_social_sharing_image}
-      />
+    <Layout
+      pageTitle={page_title}
+      seoTitle={seo_title}
+      seoDescription={seo_description}
+      altSocialSharingImage={alternate_social_sharing_image}
+    >
       <div className="viewport">
         <div className="landing-page">
           <div className="hero-container">
             <div className="hero">
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
-              <div className="firefly"></div>
+              <Fireflies quantity={25} />
               <div>
                 <PrismicRichText
                   field={hero_heading}
@@ -117,14 +108,16 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
         .hero-container {
           position: relative;
           min-height: calc(100vh - 4rem);
+          display: flex;
+          padding: 0 2vw 2vw;
         }
         .hero {
-          position: absolute;
-          inset: 0 2vw 2vw;
+          position: relative;
+          flex: 1;
           background: url(https://images.unsplash.com/photo-1518709268805-4e9042af9f23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2184&q=80);
           background-position: center;
           background-size: cover;
-          padding: 8vw;
+          padding: 8vw 10vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -206,7 +199,7 @@ const LandingPage = ({ page, books }: LandingPageProps) => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 

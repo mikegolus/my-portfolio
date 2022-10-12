@@ -8,9 +8,9 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { buildPaths } from '../../utils/build-paths'
 import { getFriendlyUrl } from '../../utils/get-friendly-url'
 import { useRouter } from 'next/router'
-import { SEOHead } from '../../components/seo-head'
 import Image from 'next/image'
 import { IconLink } from '../../components/icon-link'
+import { Layout } from '../../components'
 
 interface AuthorPageProps {
   author?: AuthorDocument
@@ -58,13 +58,12 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
     isFilled.link(tiktok)
 
   return (
-    <>
-      <SEOHead
-        pageTitle={page_title}
-        seoTitle={seo_title}
-        seoDescription={seo_description}
-        altSocialSharingImage={alternate_social_sharing_image}
-      />
+    <Layout
+      pageTitle={page_title}
+      seoTitle={seo_title}
+      seoDescription={seo_description}
+      altSocialSharingImage={alternate_social_sharing_image}
+    >
       <div className="viewport">
         <div className="portrait-container">
           <div className="portrait">
@@ -224,7 +223,7 @@ const AuthorPage = ({ author }: AuthorPageProps) => {
           }
         }
       `}</style>
-    </>
+    </Layout>
   )
 }
 
