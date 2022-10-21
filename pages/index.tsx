@@ -44,16 +44,17 @@ const HomePage = ({ page }: HomePageProps) => {
 }
 
 const Page = styled.main({
+  position: 'relative',
   display: 'grid',
   gridTemplateColumns: '1fr',
   gridTemplateRows: 'auto 1fr auto',
   gridTemplateAreas: '"header" "section" "footer"',
   minHeight: '100vh',
-  padding: '1.25rem',
 })
 
 const Header = styled.header({
   gridArea: 'header',
+  padding: 'var(--pagePadding)',
 })
 
 const Section = styled.section({
@@ -61,6 +62,7 @@ const Section = styled.section({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  padding: '0px var(--pagePadding)',
 })
 
 const Bio = styled.div({
@@ -70,8 +72,13 @@ const Bio = styled.div({
 })
 
 const Footer = styled.footer({
+  position: 'sticky',
+  zIndex: 1,
+  bottom: 0,
   gridArea: 'footer',
   fontFamily: 'var(--sansSerifFont)',
+  padding: 'var(--pagePadding)',
+  backgroundColor: 'var(--pageBackground)',
 })
 
 export default HomePage

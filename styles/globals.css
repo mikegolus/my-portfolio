@@ -1,6 +1,7 @@
 :root {
   --serifFont: "Source Serif Pro", serif;
   --sansSerifFont: "Montserrat", sans-serif;
+  --pagePadding: 1.25rem;
 }
 
 @media (prefers-color-scheme: light) {
