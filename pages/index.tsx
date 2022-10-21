@@ -1,9 +1,10 @@
 import { createClient } from '../prismicio'
 import { GetStaticProps } from 'next'
 import { HomePageDocument } from '../types.generated'
-import { PrismicRichText } from '@prismicio/react'
+import { PrismicLink, PrismicRichText } from '@prismicio/react'
 import { Layout } from '../components/layout'
 import styled from '@emotion/styled'
+import { CodepenIcon } from '../tokens'
 
 interface HomePageProps {
   page: HomePageDocument
@@ -18,6 +19,7 @@ const HomePage = ({ page }: HomePageProps) => {
       seo_title,
       seo_description,
       alternate_social_sharing_image,
+      codepen,
     },
   } = page
 
@@ -37,7 +39,14 @@ const HomePage = ({ page }: HomePageProps) => {
             <PrismicRichText field={bio} />
           </Bio>
         </Section>
-        <Footer>&copy; 2022</Footer>
+        <Footer>
+          <div>&copy; 2022</div>
+          <div>
+            <IconLink field={codepen}>
+              <CodepenIcon />
+            </IconLink>
+          </div>
+        </Footer>
       </Page>
     </Layout>
   )
@@ -76,9 +85,25 @@ const Footer = styled.footer({
   zIndex: 1,
   bottom: 0,
   gridArea: 'footer',
-  fontFamily: 'var(--sansSerifFont)',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  fontFamily: 'var(--sansSerif)',
+  lineHeight: '20px',
   padding: 'var(--pagePadding)',
-  backgroundColor: 'var(--pageBackground)',
+  backgroundColor: 'var(--pageBackgroundColor)',
+})
+
+const IconLink = styled(PrismicLink)({
+  display: 'block',
+  width: 32,
+  margin: -6,
+  padding: 6,
+  opacity: 0.65,
+  color: 'var(--textColor)',
+  '&:hover': {
+    opacity: 1,
+  },
 })
 
 export default HomePage

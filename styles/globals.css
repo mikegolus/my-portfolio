@@ -65,22 +65,3 @@ a {
   color: var(--linkColor);
   text-decoration: none;
 }
-
-.button {
-  display: inline-block;
-  color: inherit;
-  border: 1px solid;
-  border-radius: 99rem;
-  padding: 0.75em 1.25em;
-  background: transparent;
-  transition: 250ms;
-  isolation: isolate;
-}
-
-.button span {
-  mix-blend-mode: difference;
-}
-
-.button:hover {
-  background: currentColor;
-}
