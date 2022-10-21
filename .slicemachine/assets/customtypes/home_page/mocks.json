@@ -1,0 +1,70 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "home_page",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "name": [
+      {
+        "type": "heading1",
+        "text": "Price",
+        "spans": []
+      }
+    ],
+    "bio": [
+      {
+        "type": "paragraph",
+        "text": "Cupidatat nulla aliqua ullamco mollit consequat labore dolore et duis ullamco enim proident veniam ullamco. Mollit amet dolor cupidatat consectetur adipisicing reprehenderit laboris do voluptate et dolor reprehenderit esse officia ea. Nulla est ad ipsum do Lorem nulla aliqua non labore et duis.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Exercitation occaecat enim ea cillum in. Laboris est sint do cupidatat ea ea fugiat id ut cupidatat cillum aute nostrud esse ad.",
+        "spans": []
+      }
+    ],
+    "page_title": "rule",
+    "seo_title": "chose",
+    "seo_description": "active",
+    "alternate_social_sharing_image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+    },
+    "facebook": {
+      "link_type": "Web",
+      "url": "https://prismic.io"
+    },
+    "twitter": {
+      "link_type": "Web",
+      "url": "https://prismic.io"
+    },
+    "youtube": {
+      "link_type": "Web",
+      "url": "http://twitter.com"
+    },
+    "codepen": {
+      "link_type": "Web",
+      "url": "https://prismic.io"
+    },
+    "linkedin": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    },
+    "instagram": {
+      "link_type": "Web",
+      "url": "http://google.com"
+    }
+  }
+}

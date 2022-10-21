@@ -1,6 +1,0 @@
-export { FacebookIcon } from './facebook'
-export { TwitterIcon } from './twitter'
-export { InstagramIcon } from './instagram'
-export { GoodReadsIcon } from './good-reads'
-export { AmazonIcon } from './amazon'
-export { TikTokIcon } from './tiktok'

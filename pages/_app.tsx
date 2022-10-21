@@ -5,7 +5,6 @@ import { repositoryName } from '../prismicio'
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { SiteHeader, SiteFooter, Viewport } from '../components'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -17,11 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       )}
     >
       <PrismicPreview repositoryName={repositoryName}>
-        <SiteHeader />
-        <Viewport>
-          <Component {...pageProps} />
-        </Viewport>
-        <SiteFooter />
+        <Component {...pageProps} />
       </PrismicPreview>
     </PrismicProvider>
   )
