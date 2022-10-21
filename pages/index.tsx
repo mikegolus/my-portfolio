@@ -68,7 +68,7 @@ const Section = styled.section({
 const Bio = styled.div({
   fontSize: 'clamp(2rem, 1.2rem + 2vw, 3rem)',
   lineHeight: '1.25em',
-  maxWidth: '36ch',
+  maxWidth: '38ch',
 })
 
 const Footer = styled.footer({
