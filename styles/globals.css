@@ -1,8 +1,22 @@
 :root {
-  --fontColor: #202020;
-  --linkColor: #3C75AA;
   --serifFont: "Source Serif Pro", serif;
   --sansSerifFont: "Montserrat", sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --pageBackground: #FFFFFF;
+    --fontColor: #202020;
+    --linkColor: #3C75AA;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pageBackground: #141414;
+    --fontColor: #CCCCCC;
+    --linkColor: #3C75AA;
+  }
 }
 
 html,
@@ -11,6 +25,10 @@ body {
   margin: 0;
   font-family: var(--serifFont);
   color: var(--fontColor);
+}
+
+body {
+  background-color: var(--pageBackground);
 }
 
 #__next {
