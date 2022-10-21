@@ -1,22 +1,26 @@
 :root {
-  --serifFont: "Source Serif Pro", serif;
-  --sansSerifFont: "Montserrat", sans-serif;
+  --serif: "Source Serif Pro", serif;
+  --sansSerif: "Montserrat", sans-serif;
   --pagePadding: 1.25rem;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --pageBackground: #FFFFFF;
-    --fontColor: #202020;
+    --pageBackgroundColor: #FFFFFF;
+    --textColor: #202020;
     --linkColor: #3C75AA;
+    --highlightBackgroundColor: #ffe87f;
+    --highlightTextColor: var(--textColor);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --pageBackground: #141414;
-    --fontColor: #CCCCCC;
-    --linkColor: #5e9bd4;
+    --pageBackgroundColor: #141414;
+    --textColor: #CCCCCC;
+    --linkColor: #5E9BD4;
+    --highlightBackgroundColor: #F3D966;
+    --highlightTextColor: #323232;
   }
 }
 
@@ -24,12 +28,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: var(--serifFont);
-  color: var(--fontColor);
+  font-family: var(--serif);
+  color: var(--textColor);
 }
 
 body {
-  background-color: var(--pageBackground);
+  background-color: var(--pageBackgroundColor);
 }
 
 #__next {
@@ -40,8 +44,13 @@ body {
   box-sizing: border-box;
 }
 
+*::selection {
+  background: var(--highlightBackgroundColor);
+  color: var(--highlightTextColor, unset);
+}
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--sansSerifFont);
+  font-family: var(--sansSerif);
   line-height: 1em;
   margin: 0;
 }
