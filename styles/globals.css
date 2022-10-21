@@ -1,19 +1,16 @@
 :root {
   --fontColor: #202020;
   --linkColor: #3C75AA;
-  --serifFont: "EB Garamond", serif;
-  --sansSerifFont: "Open Sans", sans-serif;
+  --serifFont: "Source Serif Pro", serif;
+  --sansSerifFont: "Montserrat", sans-serif;
 }
 
 html,
 body {
-  height: 100%;
   padding: 0;
   margin: 0;
-  font-family: var(--sansSerifFont);
+  font-family: var(--serifFont);
   color: var(--fontColor);
-  display: flex;
-  flex-direction: column;
 }
 
 #__next {
@@ -25,25 +22,15 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--serifFont);
+  font-family: var(--sansSerifFont);
   line-height: 1em;
+  margin: 0;
 }
 
 h1 {
-  font-size: 3rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-p {
   font-size: 1rem;
-  line-height: 1.5em
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 a {
