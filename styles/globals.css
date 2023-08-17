@@ -9,8 +9,10 @@
     --pageBackgroundColor: #FFFFFF;
     --textColor: #202020;
     --linkColor: #3C75AA;
+    --linkHoverEffect: brightness(0.8);
     --highlightBackgroundColor: #ffe87f;
     --highlightTextColor: var(--textColor);
+    --borderColor: #D2D2D2;
   }
 }
 
@@ -19,8 +21,10 @@
     --pageBackgroundColor: #141414;
     --textColor: #CCCCCC;
     --linkColor: #5E9BD4;
+    --linkHoverEffect: brightness(1.2);
     --highlightBackgroundColor: #F3D966;
     --highlightTextColor: #323232;
+    --borderColor: #474747;
   }
 }
 
@@ -30,6 +34,7 @@ body {
   margin: 0;
   font-family: var(--serif);
   color: var(--textColor);
+  height: 100%;
 }
 
 body {
@@ -64,4 +69,8 @@ h1 {
 a {
   color: var(--linkColor);
   text-decoration: none;
+}
+
+a:hover {
+  filter: var(--linkHoverEffect);
 }

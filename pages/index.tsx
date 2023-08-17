@@ -35,11 +35,13 @@ const HomePage = ({ page }: HomePageProps) => {
         <Header>
           <PrismicRichText field={name} />
         </Header>
-        <Section>
-          <Bio>
-            <PrismicRichText field={bio} />
-          </Bio>
-        </Section>
+        <Body>
+          <Section>
+            <Bio>
+              <PrismicRichText field={bio} />
+            </Bio>
+          </Section>
+        </Body>
         <Footer>
           <div>&copy; 2023</div>
           <div>
@@ -49,14 +51,6 @@ const HomePage = ({ page }: HomePageProps) => {
           </div>
         </Footer>
       </Page>
-      <ImageContainer>
-        <Image
-          alt=""
-          layout="fill"
-          objectFit="cover"
-          src="/paris-mountain-state-park.jpg"
-        />
-      </ImageContainer>
     </Layout>
   )
 }
@@ -64,52 +58,35 @@ const HomePage = ({ page }: HomePageProps) => {
 const Page = styled.main({
   position: 'relative',
   display: 'grid',
-  gridTemplateColumns: '1fr',
-  gridTemplateRows: 'auto 1fr auto',
-  gridTemplateAreas: '"header" "section" "footer"',
-  minHeight: '100vh',
-  '@media screen and (min-width:768px)': {
-    paddingRight: '33.33vw',
-  },
-})
-
-const ImageContainer = styled.div({
-  position: 'fixed',
-  zIndex: -1,
-  right: 0,
-  top: 0,
-  bottom: 0,
-  width: '33.33vw',
-  '@media screen and (max-width:767px)': {
-    width: '100vw',
-    opacity: 0.15,
-  },
+  gridTemplateColumns: 'minmax(0, 1fr)',
+  gridTemplateRows: 'min-content minmax(0,1fr) min-content',
+  height: '100%',
+  minHeight: '100%',
 })
 
 const Header = styled.header({
-  gridArea: 'header',
   padding: 'var(--pagePadding)',
+  borderBottom: '1px solid var(--borderColor)',
+})
+
+const Body = styled.div({
+  display: 'grid',
+  overflowY: 'auto',
 })
 
 const Section = styled.section({
-  gridArea: 'section',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  display: 'grid',
+  placeContent: 'center',
   padding: '0px var(--pagePadding)',
 })
 
 const Bio = styled.div({
-  fontSize: 'clamp(1.5rem, 1.25rem + 1.1111vw, 2.25rem)',
+  fontSize: 'clamp(2rem, 1.2rem + 2vw, 3rem)',
   lineHeight: '1.25em',
   maxWidth: '38ch',
 })
 
 const Footer = styled.footer({
-  position: 'sticky',
-  zIndex: 1,
-  bottom: 0,
-  gridArea: 'footer',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -117,6 +94,7 @@ const Footer = styled.footer({
   lineHeight: '20px',
   padding: 'var(--pagePadding)',
   backgroundColor: 'var(--pageBackgroundColor)',
+  borderTop: '1px solid var(--borderColor)',
 })
 
 const IconLink = styled(PrismicLink)({
