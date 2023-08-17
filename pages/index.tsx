@@ -5,6 +5,7 @@ import { PrismicLink, PrismicRichText } from '@prismicio/react'
 import { Layout } from '../components/layout'
 import styled from '@emotion/styled'
 import { CodepenIcon } from '../tokens'
+import Image from 'next/image'
 
 interface HomePageProps {
   page: HomePageDocument
@@ -40,7 +41,7 @@ const HomePage = ({ page }: HomePageProps) => {
           </Bio>
         </Section>
         <Footer>
-          <div>&copy; 2022</div>
+          <div>&copy; 2023</div>
           <div>
             <IconLink field={codepen}>
               <CodepenIcon />
@@ -48,6 +49,14 @@ const HomePage = ({ page }: HomePageProps) => {
           </div>
         </Footer>
       </Page>
+      <ImageContainer>
+        <Image
+          alt=""
+          layout="fill"
+          objectFit="cover"
+          src="/paris-mountain-state-park.jpg"
+        />
+      </ImageContainer>
     </Layout>
   )
 }
@@ -59,6 +68,22 @@ const Page = styled.main({
   gridTemplateRows: 'auto 1fr auto',
   gridTemplateAreas: '"header" "section" "footer"',
   minHeight: '100vh',
+  '@media screen and (min-width:768px)': {
+    paddingRight: '33.33vw',
+  },
+})
+
+const ImageContainer = styled.div({
+  position: 'fixed',
+  zIndex: -1,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  width: '33.33vw',
+  '@media screen and (max-width:767px)': {
+    width: '100vw',
+    opacity: 0.15,
+  },
 })
 
 const Header = styled.header({
@@ -75,7 +100,7 @@ const Section = styled.section({
 })
 
 const Bio = styled.div({
-  fontSize: 'clamp(2rem, 1.2rem + 2vw, 3rem)',
+  fontSize: 'clamp(1.5rem, 1.25rem + 1.1111vw, 2.25rem)',
   lineHeight: '1.25em',
   maxWidth: '38ch',
 })
