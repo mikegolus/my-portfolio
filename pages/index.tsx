@@ -6,6 +6,7 @@ import { Layout } from '../components/layout'
 import styled from '@emotion/styled'
 import { CodepenIcon } from '../tokens'
 import Image from 'next/image'
+import { keyframes } from '@emotion/react'
 
 interface HomePageProps {
   page: HomePageDocument
@@ -33,7 +34,15 @@ const HomePage = ({ page }: HomePageProps) => {
     >
       <Page>
         <Header>
-          <PrismicRichText field={name} />
+          <Avatar>
+            <Image src="/mike.jpg" alt="Mike" layout="fill" />
+          </Avatar>
+          <Text>
+            <Name>
+              <PrismicRichText field={name} />
+            </Name>
+            <Title>Design System Guru + Frontend Dev</Title>
+          </Text>
         </Header>
         <Body>
           <Section>
@@ -43,17 +52,23 @@ const HomePage = ({ page }: HomePageProps) => {
           </Section>
         </Body>
         <Footer>
-          <div>&copy; 2023</div>
-          <div>
-            <IconLink field={codepen}>
-              <CodepenIcon />
-            </IconLink>
-          </div>
+          <IconLink field={codepen}>
+            <CodepenIcon />
+          </IconLink>
         </Footer>
       </Page>
     </Layout>
   )
 }
+
+const rotate = keyframes({
+  from: {
+    transform: 'rotate(0deg)',
+  },
+  to: {
+    transform: 'rotate(360deg)',
+  },
+})
 
 const Page = styled.main({
   position: 'relative',
@@ -62,14 +77,51 @@ const Page = styled.main({
   gridTemplateRows: 'min-content minmax(0,1fr) min-content',
   height: '100%',
   minHeight: '100%',
+  paddingTop: 'env(safe-area-inset-top)',
 })
 
 const Header = styled.header({
-  padding: 'var(--pagePadding)',
-  borderBottom: '1px solid var(--borderColor)',
+  paddingBlock: 'calc(var(--pagePadding) / 1.5)',
+  paddingInlineStart: 'calc(var(--pagePadding) + env(safe-area-inset-left))',
+  paddingInlineEnd: 'calc(var(--pagePadding) + env(safe-area-inset-right))',
+  borderBottom: '0.5px solid var(--borderColor)',
+  lineHeight: '1rem',
+  display: 'flex',
+  gap: '0.875rem',
+  alignItems: 'center',
+})
+
+const Avatar = styled.div({
+  position: 'relative',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  width: 44,
+  height: 44,
+  flexShrink: 0,
+  boxShadow: '0 0 1px 0 rgba(0,0,0,1)',
+  animation: `${rotate} 12s linear infinite`,
+})
+
+const Text = styled.div({
+  display: 'flex',
+  flex: 1,
+  flexWrap: 'wrap',
+  alignItems: 'baseline',
+  gap: '0.3rem 2rem',
+  whiteSpace: 'nowrap',
+})
+
+const Name = styled.div({
+  marginRight: 'auto',
+})
+
+const Title = styled.div({
+  fontSize: '0.95rem',
+  color: 'var(--textColorLight)',
 })
 
 const Body = styled.div({
+  position: 'relative',
   display: 'grid',
   overflowY: 'auto',
 })
@@ -77,7 +129,8 @@ const Body = styled.div({
 const Section = styled.section({
   display: 'grid',
   placeContent: 'center',
-  padding: '0px var(--pagePadding)',
+  paddingInlineStart: 'calc(var(--pagePadding) + env(safe-area-inset-left))',
+  paddingInlineEnd: 'calc(var(--pagePadding) + env(safe-area-inset-right))',
 })
 
 const Bio = styled.div({
@@ -91,19 +144,24 @@ const Footer = styled.footer({
   justifyContent: 'space-between',
   alignItems: 'center',
   fontFamily: 'var(--sansSerif)',
-  lineHeight: '20px',
-  padding: 'var(--pagePadding)',
+  lineHeight: '24px',
+  paddingBlock: 'var(--pagePadding)',
+  paddingInlineStart: 'calc(var(--pagePadding) + env(safe-area-inset-left))',
+  paddingInlineEnd: 'calc(var(--pagePadding) + env(safe-area-inset-right))',
   backgroundColor: 'var(--pageBackgroundColor)',
-  borderTop: '1px solid var(--borderColor)',
+  borderTop: '0.5px solid var(--borderColor)',
 })
 
 const IconLink = styled(PrismicLink)({
   display: 'block',
-  width: 32,
   margin: -6,
   padding: 6,
   opacity: 0.65,
   color: 'var(--textColor)',
+  '& svg': {
+    width: 24,
+    height: 24,
+  },
   '&:hover': {
     opacity: 1,
   },

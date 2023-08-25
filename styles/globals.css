@@ -6,8 +6,9 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --pageBackgroundColor: #FFFFFF;
-    --textColor: #202020;
+    --pageBackgroundColor: #FBFBFB;
+    --textColor: #1B1B1B;
+    --textColorLight: #A4A4A4;
     --linkColor: #3C75AA;
     --linkHoverEffect: brightness(0.8);
     --highlightBackgroundColor: #ffe87f;
@@ -18,8 +19,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --pageBackgroundColor: #141414;
-    --textColor: #CCCCCC;
+    --pageBackgroundColor: #1B1B1B;
+    --textColor: #FBFBFB;
+    --textColorLight: #717171;
     --linkColor: #5E9BD4;
     --linkHoverEffect: brightness(1.2);
     --highlightBackgroundColor: #F3D966;
@@ -28,17 +30,14 @@
   }
 }
 
-html,
 body {
-  padding: 0;
+  position: fixed;
   margin: 0;
   font-family: var(--serif);
   color: var(--textColor);
-  height: 100%;
-}
-
-body {
   background-color: var(--pageBackgroundColor);
+  height: 100svh;
+  width: 100vw;
 }
 
 #__next {
