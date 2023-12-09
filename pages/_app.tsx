@@ -7,6 +7,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { Tooltip } from '../components/tooltip'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -40,6 +41,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </PrismicPreview>
       </PrismicProvider>
+      <Tooltip />
     </>
   )
 }

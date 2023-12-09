@@ -7,6 +7,8 @@ import styled from '@emotion/styled'
 import { CodepenIcon } from '../tokens'
 import Image from 'next/image'
 import { keyframes } from '@emotion/react'
+import Link from 'next/link'
+import { PeriodicTableIcon } from '../tokens/icons/periodic-table-icon'
 
 interface HomePageProps {
   page: HomePageDocument
@@ -52,9 +54,17 @@ const HomePage = ({ page }: HomePageProps) => {
           </Section>
         </Body>
         <Footer>
-          <IconLink field={codepen}>
+          <IconLink field={codepen} data-tooltip="Codepen">
             <CodepenIcon />
           </IconLink>
+          <AltIconLink
+            href="https://prettierperiodictable.com"
+            target="_blank"
+            data-tooltip="Prettier Periodic Table"
+            rel="noreferrer"
+          >
+            <PeriodicTableIcon />
+          </AltIconLink>
         </Footer>
       </Page>
     </Layout>
@@ -141,7 +151,7 @@ const Bio = styled.div({
 
 const Footer = styled.footer({
   display: 'flex',
-  justifyContent: 'space-between',
+  gap: 12,
   alignItems: 'center',
   fontFamily: 'var(--sansSerif)',
   lineHeight: '24px',
@@ -153,6 +163,21 @@ const Footer = styled.footer({
 })
 
 const IconLink = styled(PrismicLink)({
+  display: 'block',
+  margin: -6,
+  padding: 6,
+  opacity: 0.65,
+  color: 'var(--textColor)',
+  '& svg': {
+    width: 24,
+    height: 24,
+  },
+  '&:hover': {
+    opacity: 1,
+  },
+})
+
+const AltIconLink = styled.a({
   display: 'block',
   margin: -6,
   padding: 6,

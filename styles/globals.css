@@ -14,6 +14,7 @@
     --highlightBackgroundColor: #ffe87f;
     --highlightTextColor: var(--textColor);
     --borderColor: #D2D2D2;
+    --tooltipBackgroundColor: #DDDDDD;
   }
 }
 
@@ -27,6 +28,7 @@
     --highlightBackgroundColor: #F3D966;
     --highlightTextColor: #323232;
     --borderColor: #474747;
+    --tooltipBackgroundColor: #444444;
   }
 }
 
