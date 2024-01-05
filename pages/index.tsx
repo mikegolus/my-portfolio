@@ -43,7 +43,7 @@ const HomePage = ({ page }: HomePageProps) => {
             <Name>
               <PrismicRichText field={name} />
             </Name>
-            <Title>Frontend Engineer + Design System Architect</Title>
+            <Title>Frontend and Design System Engineer</Title>
           </Text>
         </Header>
         <Body>
@@ -132,14 +132,6 @@ const HomePage = ({ page }: HomePageProps) => {
           <IconLink field={codepen} data-tooltip="Codepen">
             <CodepenIcon />
           </IconLink>
-          <AltIconLink
-            href="https://prettierperiodictable.com"
-            target="_blank"
-            data-tooltip="Prettier Periodic Table"
-            rel="noreferrer"
-          >
-            <PeriodicTableIcon />
-          </AltIconLink>
         </Footer>
       </Page>
     </Layout>
