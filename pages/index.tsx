@@ -7,8 +7,6 @@ import styled from '@emotion/styled'
 import { CodepenIcon } from '../tokens'
 import Image from 'next/image'
 import { keyframes } from '@emotion/react'
-import Link from 'next/link'
-import { PeriodicTableIcon } from '../tokens/icons/periodic-table-icon'
 
 interface HomePageProps {
   page: HomePageDocument
