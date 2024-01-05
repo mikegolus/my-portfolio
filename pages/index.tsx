@@ -43,14 +43,89 @@ const HomePage = ({ page }: HomePageProps) => {
             <Name>
               <PrismicRichText field={name} />
             </Name>
-            <Title>Design System Guru + Frontend Dev</Title>
+            <Title>Frontend Engineer + Design System Architect</Title>
           </Text>
         </Header>
         <Body>
           <Section>
-            <Bio>
-              <PrismicRichText field={bio} />
-            </Bio>
+            <Copy>
+              <Bio>
+                <PrismicRichText field={bio} />
+              </Bio>
+              <Work>
+                <Project>
+                  <ProjectLabel>Personal Project</ProjectLabel>
+                  <ProjectHeading>
+                    <a
+                      target="_blank"
+                      href="https://whichday.io"
+                      rel="noreferrer"
+                    >
+                      WhichDay.io
+                    </a>
+                  </ProjectHeading>
+                  <p>
+                    Last December, after some less than successful attempts to
+                    plan holiday get-togethers, I created an app that provides
+                    easily shareable calendars to help people find which days
+                    everyone is available.
+                  </p>
+                </Project>
+                <Project>
+                  <ProjectLabel>Client Project</ProjectLabel>
+                  <ProjectHeading>
+                    <a
+                      target="_blank"
+                      href="https://aclassicretold.com"
+                      rel="noreferrer"
+                    >
+                      A Classic Retold
+                    </a>
+                  </ProjectHeading>
+                  <p>
+                    A website I built with Next.js and Prismic for a group of
+                    authors to promote their joint novel series. Before the
+                    release of each book the website provided countdowns and
+                    preorder options to pair with social media efforts.
+                  </p>
+                </Project>
+                <Project>
+                  <ProjectLabel>Personal Project</ProjectLabel>
+                  <ProjectHeading>
+                    <a
+                      target="_blank"
+                      href="https://prettierperiodictable.com"
+                      rel="noreferrer"
+                    >
+                      Prettier Periodic Table
+                    </a>
+                  </ProjectHeading>
+                  <p>
+                    Due to the popularity of my css periodic table on codepen, I
+                    built this hobby project to become familiar with AWS
+                    DynamoDB and the Framer Motion library for smooth UI
+                    animations and transitions.
+                  </p>
+                </Project>
+                <Project>
+                  <ProjectLabel>Client Project</ProjectLabel>
+                  <ProjectHeading>
+                    <a
+                      target="_blank"
+                      href="https://www.worldofvindor.com"
+                      rel="noreferrer"
+                    >
+                      World of Vindor
+                    </a>
+                  </ProjectHeading>
+                  <p>
+                    Intending to provide a more unique experience, for this
+                    project I focused on creating immersive soundscapes and
+                    smooth transitions between views.
+                  </p>
+                </Project>
+              </Work>
+            </Copy>
           </Section>
         </Body>
         <Footer>
@@ -143,10 +218,51 @@ const Section = styled.section({
   paddingInlineEnd: 'calc(var(--pagePadding) + env(safe-area-inset-right))',
 })
 
-const Bio = styled.div({
+const Copy = styled.div({
   fontSize: 'clamp(2rem, 1.2rem + 2vw, 3rem)',
   lineHeight: '1.25em',
   maxWidth: '38ch',
+})
+
+const Bio = styled.p({
+  margin: 0,
+  width: '100%',
+})
+
+const Work = styled.div({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'var(--pagePadding)',
+  marginBottom: '2rem',
+})
+
+const Project = styled.div({
+  display: 'grid',
+  gap: 4,
+  border: '0.5px solid var(--borderColor)',
+  borderRadius: 8,
+  padding: 'var(--pagePadding)',
+  '& p': {
+    fontSize: '0.875rem',
+    lineHeight: '1.4em',
+    margin: 0,
+    fontFamily: 'var(--sansSerif)',
+    opacity: 0.85,
+  },
+})
+
+const ProjectLabel = styled.div({
+  fontSize: '0.75rem',
+  lineHeight: '1em',
+  marginBottom: '0.25em',
+  color: 'var(--textColorLight)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.1em',
+})
+
+const ProjectHeading = styled.div({
+  fontSize: '1.25rem',
+  lineHeight: '1.5em',
 })
 
 const Footer = styled.footer({
